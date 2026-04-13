@@ -1,0 +1,831 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>SANZAHRA</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+    :root {
+      --black: #0a0a0a;
+      --white: #fafafa;
+      --gray: #888;
+      --light-gray: #e5e5e5;
+      --serif: 'Cormorant Garamond', Georgia, serif;
+      --sans: 'Montserrat', Helvetica, Arial, sans-serif;
+    }
+
+    html { scroll-behavior: smooth; font-size: 16px; }
+
+    body {
+      font-family: var(--sans);
+      background: var(--white);
+      color: var(--black);
+      overflow-x: hidden;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* ── MAINTENANCE ── */
+    #maintenance {
+      position: fixed; inset: 0; z-index: 99999;
+      background: var(--black);
+      display: flex; align-items: center; justify-content: center;
+      transition: opacity .6s ease, visibility .6s ease;
+    }
+    #maintenance.unlocked { opacity: 0; visibility: hidden; pointer-events: none; }
+    .maint-inner {
+      text-align: center; width: 100%; max-width: 550px; padding: 2rem;
+      display: flex; flex-direction: column; align-items: center; justify-content: center;
+    }
+    .maint-line { width: 50px; height: 1px; background: rgba(255,255,255,.25); margin: 0 auto 2.5rem; }
+    .maint-title {
+      font-family: var(--serif); font-size: clamp(2.5rem, 6vw, 4rem); font-weight: 300;
+      color: var(--white); letter-spacing: .3em; margin-bottom: 1rem; width: 100%;
+    }
+    .maint-sub {
+      font-size: .7rem; font-weight: 500; letter-spacing: .3em; text-transform: uppercase;
+      color: rgba(255,255,255,.4); margin-bottom: 2rem;
+    }
+    .maint-desc {
+      font-size: .85rem; line-height: 1.8; color: rgba(255,255,255,.5); margin-bottom: 3rem;
+    }
+    .maint-form { display: flex; gap: 0; margin-bottom: 1rem; width: 100%; max-width: 380px; }
+    .maint-form input {
+      flex: 1; background: transparent; border: 1px solid rgba(255,255,255,.2);
+      border-right: none; padding: .9rem 1.2rem; color: var(--white);
+      font-family: var(--sans); font-size: .8rem; outline: none;
+      letter-spacing: .1em; transition: border-color .3s;
+    }
+    .maint-form input:focus { border-color: rgba(255,255,255,.5); }
+    .maint-form input::placeholder { color: rgba(255,255,255,.2); letter-spacing: .1em; }
+    .maint-form button {
+      background: var(--white); border: 1px solid var(--white); color: var(--black);
+      padding: .9rem 2rem; font-family: var(--sans); font-size: .65rem; font-weight: 600;
+      letter-spacing: .2em; text-transform: uppercase; cursor: pointer; transition: all .3s;
+    }
+    .maint-form button:hover { background: transparent; color: var(--white); }
+    .maint-error {
+      font-size: .7rem; color: #e74c3c; letter-spacing: .1em;
+      opacity: 0; transition: opacity .3s;
+    }
+    .maint-error.show { opacity: 1; }
+    .maint-form.shake { animation: shake .4s ease; }
+    @keyframes shake { 0%,100%{transform:translateX(0)} 20%{transform:translateX(-8px)} 40%{transform:translateX(8px)} 60%{transform:translateX(-5px)} 80%{transform:translateX(5px)} }
+
+    /* ── LOADER ── */
+    #loader {
+      position: fixed; inset: 0; z-index: 9999;
+      background: var(--black);
+      display: flex; align-items: center; justify-content: center;
+      transition: opacity .8s ease, visibility .8s ease;
+    }
+    #loader.hide { opacity: 0; visibility: hidden; pointer-events: none; }
+    #loader span {
+      font-family: var(--serif);
+      font-size: clamp(2rem, 5vw, 4rem);
+      color: var(--white);
+      letter-spacing: .35em;
+      animation: loaderPulse 1.6s ease-in-out infinite;
+    }
+    @keyframes loaderPulse { 0%,100%{opacity:.3} 50%{opacity:1} }
+
+    /* ── NAV ── */
+    nav {
+      position: fixed; top: 0; left: 0; width: 100%; z-index: 100;
+      padding: 1.5rem 3rem;
+      display: grid;
+      grid-template-columns: 1fr auto 1fr;
+      align-items: center;
+      transition: background .4s, backdrop-filter .4s, padding .4s;
+    }
+    nav.scrolled {
+      background: rgba(250,250,250,.85);
+      backdrop-filter: blur(12px);
+      padding: 1rem 3rem;
+      border-bottom: 1px solid var(--light-gray);
+    }
+    nav .logo {
+      grid-column: 2;
+      font-family: var(--serif);
+      font-size: 1.4rem;
+      font-weight: 400;
+      letter-spacing: .25em;
+      color: var(--white);
+      text-decoration: none;
+      transition: color .4s;
+      text-align: center;
+    }
+    nav.scrolled .logo { color: var(--black); }
+
+    .nav-links { display: flex; gap: 1.8rem; list-style: none; }
+    .nav-links-left { grid-column: 1; justify-self: start; }
+    .nav-links-right { grid-column: 3; justify-self: end; }
+    .nav-links a {
+      font-size: .7rem;
+      font-weight: 500;
+      letter-spacing: .15em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,.8);
+      text-decoration: none;
+      position: relative;
+      transition: color .3s;
+    }
+    nav.scrolled .nav-links a { color: var(--black); }
+    .nav-links a::after {
+      content: ''; position: absolute; bottom: -4px; left: 0;
+      width: 0; height: 1px; background: currentColor;
+      transition: width .3s;
+    }
+    .nav-links a:hover::after { width: 100%; }
+
+    /* hamburger */
+    .hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; z-index: 200; grid-column: 3; justify-self: end; }
+    .hamburger span { width: 24px; height: 1.5px; background: var(--white); transition: all .3s; }
+    nav.scrolled .hamburger span { background: var(--black); }
+    .hamburger.open span:nth-child(1) { transform: rotate(45deg) translate(5px,5px); }
+    .hamburger.open span:nth-child(2) { opacity: 0; }
+    .hamburger.open span:nth-child(3) { transform: rotate(-45deg) translate(4px,-4px); }
+
+    /* mobile menu */
+    .mobile-menu {
+      position: fixed; inset: 0; z-index: 150;
+      background: var(--black);
+      display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 2rem;
+      opacity: 0; visibility: hidden; transition: all .4s;
+    }
+    .mobile-menu.open { opacity: 1; visibility: visible; }
+    .mobile-menu a {
+      font-family: var(--serif); font-size: 1.8rem; color: var(--white);
+      text-decoration: none; letter-spacing: .1em;
+      opacity: 0; transform: translateY(20px); transition: opacity .4s, transform .4s;
+    }
+    .mobile-menu.open a { opacity: 1; transform: translateY(0); }
+
+    /* ── HERO ── */
+    #inicio {
+      position: relative; height: 100vh; width: 100%;
+      display: flex; align-items: center; justify-content: center;
+      background: var(--black); overflow: hidden;
+    }
+    .hero-bg {
+      position: absolute; inset: 0;
+      background: url('https://images.unsplash.com/photo-1616594039964-ae9021a400a0?w=1920&q=80') center/cover no-repeat;
+    }
+    .hero-bg::before {
+      content: ''; position: absolute; inset: 0;
+      background: rgba(0,0,0,.5);
+    }
+    .hero-content {
+      position: relative; z-index: 2; text-align: center;
+      animation: heroFadeIn 1.5s ease .5s both;
+    }
+    @keyframes heroFadeIn { from{opacity:0;transform:translateY(30px)} to{opacity:1;transform:translateY(0)} }
+    .hero-content h1 {
+      font-family: var(--serif); font-size: clamp(3rem, 8vw, 7rem); font-weight: 300;
+      color: var(--white); letter-spacing: .3em; margin-bottom: 1.5rem;
+    }
+    .hero-content p {
+      font-size: .75rem; font-weight: 400; letter-spacing: .3em; text-transform: uppercase;
+      color: rgba(255,255,255,.5); margin-bottom: 3rem;
+    }
+    .hero-line { width: 60px; height: 1px; background: rgba(255,255,255,.3); margin: 0 auto 2rem; }
+    .hero-scroll { position: absolute; bottom: 3rem; left: 50%; transform: translateX(-50%); z-index: 2; }
+    .hero-scroll span {
+      display: block; width: 1px; height: 50px;
+      background: linear-gradient(to bottom, rgba(255,255,255,.5), transparent);
+      animation: scrollLine 2s ease-in-out infinite;
+    }
+    @keyframes scrollLine { 0%{transform:scaleY(0);transform-origin:top} 50%{transform:scaleY(1);transform-origin:top} 51%{transform-origin:bottom} 100%{transform:scaleY(0);transform-origin:bottom} }
+
+    /* ── SECTIONS BASE ── */
+    section { padding: 7rem 3rem; }
+    .section-label {
+      font-size: .65rem; font-weight: 500; letter-spacing: .3em;
+      text-transform: uppercase; color: var(--gray); margin-bottom: 1rem;
+    }
+    .section-title {
+      font-family: var(--serif); font-size: clamp(2rem, 4vw, 3.5rem);
+      font-weight: 300; line-height: 1.2; margin-bottom: 2rem;
+    }
+    .section-text { font-size: .9rem; line-height: 1.8; color: #555; max-width: 600px; }
+
+    /* reveal */
+    .reveal { opacity: 0; transform: translateY(40px); transition: opacity .8s ease, transform .8s ease; }
+    .reveal.visible { opacity: 1; transform: translateY(0); }
+
+    /* ── MARQUEE ── */
+    .marquee-container {
+      overflow: hidden; padding: 2.5rem 0;
+      border-top: 1px solid var(--light-gray); border-bottom: 1px solid var(--light-gray);
+    }
+    .marquee { display: flex; width: max-content; animation: marquee 25s linear infinite; }
+    @keyframes marquee { 0%{transform:translateX(0)} 100%{transform:translateX(-50%)} }
+    .marquee span {
+      font-family: var(--serif); font-size: clamp(1.5rem, 4vw, 3rem); font-weight: 300;
+      letter-spacing: .15em; white-space: nowrap; padding: 0 2rem; color: var(--black); opacity: .5;
+    }
+    .marquee span.filled { opacity: .3; }
+
+    /* ── SOBRE NOSOTROS ── */
+    #sobre-nosotros { background: var(--white); }
+    .about-grid {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 4rem;
+      align-items: center; max-width: 1200px; margin: 0 auto;
+    }
+    .about-image {
+      aspect-ratio: 3/4;
+      background: url('https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=800&q=80') center/cover no-repeat;
+      position: relative; overflow: hidden;
+    }
+
+    /* ── FULL-WIDTH IMAGE BREAK ── */
+    .image-break {
+      width: 100%; height: 50vh; min-height: 350px;
+      background-size: cover; background-position: center; background-attachment: fixed;
+      position: relative;
+    }
+    .image-break::after {
+      content: ''; position: absolute; inset: 0;
+      background: rgba(0,0,0,.25);
+    }
+    .image-break-text {
+      position: absolute; inset: 0; z-index: 2;
+      display: flex; flex-direction: column; align-items: center; justify-content: center;
+      color: var(--white); text-align: center;
+    }
+    .image-break-text h3 {
+      font-family: var(--serif); font-size: clamp(1.5rem, 3vw, 2.5rem);
+      font-weight: 300; letter-spacing: .15em; margin-bottom: .5rem;
+    }
+    .image-break-text p {
+      font-size: .7rem; letter-spacing: .25em; text-transform: uppercase;
+      color: rgba(255,255,255,.6);
+    }
+
+    /* ── SERVICES VISUAL GRID ── */
+    #servicios { background: var(--white); padding-bottom: 4rem; }
+    .services-visual-grid {
+      display: grid; grid-template-columns: repeat(3, 1fr); gap: 0;
+      max-width: 1400px; margin: 3rem auto 0; gap: 4px;
+    }
+    .service-visual-card {
+      position: relative; aspect-ratio: 3/4; overflow: hidden; cursor: pointer;
+      background-size: cover; background-position: center;
+    }
+    .service-visual-card::before {
+      content: ''; position: absolute; inset: 0;
+      background: linear-gradient(to top, rgba(0,0,0,.75) 0%, rgba(0,0,0,.1) 60%);
+      transition: background .4s;
+    }
+    .service-visual-card:hover::before {
+      background: linear-gradient(to top, rgba(0,0,0,.85) 0%, rgba(0,0,0,.3) 60%);
+    }
+    .service-visual-card .card-content {
+      position: absolute; bottom: 0; left: 0; right: 0;
+      padding: 2.5rem; color: var(--white); z-index: 2;
+    }
+    .service-visual-card .card-number {
+      font-family: var(--serif); font-size: 1rem; font-weight: 300;
+      color: rgba(255,255,255,.4); margin-bottom: .5rem; letter-spacing: .1em;
+    }
+    .service-visual-card h3 {
+      font-family: var(--serif); font-size: 1.6rem; font-weight: 300;
+      letter-spacing: .05em; margin-bottom: .5rem;
+    }
+    .service-visual-card p {
+      font-size: .72rem; line-height: 1.6; color: rgba(255,255,255,.6);
+      max-height: 0; overflow: hidden; transition: max-height .4s ease, margin .4s;
+    }
+    .service-visual-card:hover p { max-height: 80px; margin-top: .5rem; }
+    .service-visual-card .card-arrow {
+      position: absolute; top: 2rem; right: 2rem;
+      font-size: 1.2rem; color: rgba(255,255,255,.3);
+      transition: color .3s, transform .3s;
+    }
+    .service-visual-card:hover .card-arrow { color: var(--white); transform: translate(3px,-3px); }
+
+    /* ── PORTFOLIO ── */
+    #portfolio { background: var(--black); color: var(--white); }
+    #portfolio .section-label { color: rgba(255,255,255,.4); }
+    #portfolio .section-title { color: var(--white); }
+    .portfolio-grid {
+      display: grid; grid-template-columns: repeat(4, 1fr); grid-template-rows: auto auto;
+      gap: 4px; max-width: 100%; margin: 3rem -3rem 0;
+    }
+    .portfolio-item {
+      position: relative; overflow: hidden; cursor: pointer;
+      background-size: cover; background-position: center;
+      min-height: 300px;
+    }
+    .portfolio-item.tall { grid-row: span 2; min-height: 604px; }
+    .portfolio-item.wide { grid-column: span 2; }
+    .portfolio-item::before {
+      content: ''; position: absolute; inset: 0;
+      background: rgba(0,0,0,0); transition: background .4s;
+    }
+    .portfolio-item:hover::before { background: rgba(0,0,0,.5); }
+    .portfolio-item .portfolio-info {
+      position: absolute; bottom: 0; left: 0; right: 0;
+      padding: 2rem; color: var(--white); z-index: 2;
+      transform: translateY(20px); opacity: 0; transition: all .4s;
+    }
+    .portfolio-item:hover .portfolio-info { transform: translateY(0); opacity: 1; }
+    .portfolio-info h4 {
+      font-family: var(--serif); font-size: 1.3rem; font-weight: 300;
+      letter-spacing: .05em; margin-bottom: .3rem;
+    }
+    .portfolio-info span {
+      font-size: .65rem; letter-spacing: .15em; text-transform: uppercase;
+      color: rgba(255,255,255,.6);
+    }
+
+    /* ── SERVICE DETAIL ── */
+    .service-detail { max-width: 1200px; margin: 0 auto; }
+    .service-detail-grid {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: start;
+    }
+    .service-detail-visual {
+      aspect-ratio: 4/3; background-color: #e0e0e0;
+      background-size: cover; background-position: center; background-repeat: no-repeat;
+    }
+    .tag-list { display: flex; flex-wrap: wrap; gap: .5rem; margin-top: 1.5rem; }
+    .tag {
+      font-size: .65rem; letter-spacing: .1em; text-transform: uppercase;
+      padding: .5rem 1rem; border: 1px solid var(--light-gray); transition: all .3s;
+    }
+    .tag:hover { background: var(--black); color: var(--white); border-color: var(--black); }
+    .bg-light { background: #f7f7f7; }
+
+    /* ── CONTACT ── */
+    #contacto { background: var(--black); color: var(--white); }
+    #contacto .section-label { color: rgba(255,255,255,.4); }
+    #contacto .section-title { color: var(--white); }
+    .contact-grid {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 4rem;
+      max-width: 1200px; margin: 3rem auto 0;
+    }
+    .contact-info p { font-size: .85rem; line-height: 2; color: rgba(255,255,255,.6); }
+    .contact-info a { color: var(--white); text-decoration: none; border-bottom: 1px solid rgba(255,255,255,.2); }
+    .contact-form { display: flex; flex-direction: column; gap: 1.5rem; }
+    .contact-form input,
+    .contact-form textarea {
+      background: transparent; border: none; border-bottom: 1px solid rgba(255,255,255,.2);
+      padding: 1rem 0; color: var(--white); font-family: var(--sans); font-size: .85rem;
+      outline: none; transition: border-color .3s;
+    }
+    .contact-form input:focus, .contact-form textarea:focus { border-color: var(--white); }
+    .contact-form input::placeholder, .contact-form textarea::placeholder { color: rgba(255,255,255,.3); letter-spacing: .1em; }
+    .contact-form textarea { resize: none; height: 120px; }
+    .contact-form button {
+      align-self: flex-start; background: transparent; border: 1px solid var(--white);
+      color: var(--white); padding: .8rem 3rem; font-family: var(--sans); font-size: .7rem;
+      font-weight: 500; letter-spacing: .2em; text-transform: uppercase; cursor: pointer; transition: all .3s;
+    }
+    .contact-form button:hover { background: var(--white); color: var(--black); }
+
+    /* ── FOOTER ── */
+    footer {
+      background: var(--black); border-top: 1px solid rgba(255,255,255,.1);
+      padding: 3rem; display: flex; align-items: center; justify-content: space-between;
+    }
+    footer .footer-logo {
+      font-family: var(--serif); font-size: 1rem; font-weight: 400;
+      letter-spacing: .25em; color: var(--white);
+    }
+    footer p { font-size: .7rem; color: rgba(255,255,255,.3); letter-spacing: .1em; }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 900px) {
+      .nav-links { display: none !important; }
+      .hamburger { display: flex; }
+      nav { padding: 1.2rem 1.5rem; grid-template-columns: 1fr auto 1fr; }
+      nav .logo { grid-column: 2; }
+      section { padding: 4rem 1.5rem; }
+      .about-grid, .service-detail-grid, .contact-grid { grid-template-columns: 1fr; gap: 2rem; }
+      .services-visual-grid { grid-template-columns: 1fr; }
+      .service-visual-card { aspect-ratio: 16/9; }
+      .portfolio-grid { grid-template-columns: 1fr 1fr; margin: 3rem -1.5rem 0; }
+      .portfolio-item.tall { grid-row: span 1; min-height: 300px; }
+      .portfolio-item.wide { grid-column: span 1; }
+      .about-image { aspect-ratio: 16/9; }
+      .image-break { background-attachment: scroll; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Maintenance Gate -->
+  <div id="maintenance">
+    <div class="maint-inner">
+      <div class="maint-line"></div>
+      <h1 class="maint-title">SANZAHRA</h1>
+      <p class="maint-sub">Sitio en construcci&oacute;n</p>
+      <p class="maint-desc">Estamos trabajando en algo extraordinario.<br>Vuelve pronto.</p>
+      <div class="maint-form">
+        <input type="password" id="maintPass" placeholder="Introduce la clave de acceso" autocomplete="off" />
+        <button id="maintBtn">Acceder</button>
+      </div>
+      <p class="maint-error" id="maintError">Clave incorrecta</p>
+    </div>
+  </div>
+
+  <!-- Loader -->
+  <div id="loader"><span>SANZAHRA</span></div>
+
+  <!-- Nav -->
+  <nav id="mainNav">
+    <ul class="nav-links nav-links-left">
+      <li><a href="#inicio">Inicio</a></li>
+      <li><a href="#sobre-nosotros">Sobre Nosotros</a></li>
+      <li><a href="#servicios">Servicios</a></li>
+      <li><a href="#portfolio">Portfolio</a></li>
+    </ul>
+    <a href="#inicio" class="logo">SANZAHRA</a>
+    <ul class="nav-links nav-links-right">
+      <li><a href="#branding">Branding</a></li>
+      <li><a href="#interiorismo">Interiorismo</a></li>
+      <li><a href="#moda">Moda</a></li>
+      <li><a href="#contacto">Contacto</a></li>
+    </ul>
+    <div class="hamburger" id="hamburger">
+      <span></span><span></span><span></span>
+    </div>
+  </nav>
+
+  <!-- Mobile Menu -->
+  <div class="mobile-menu" id="mobileMenu">
+    <a href="#inicio">Inicio</a>
+    <a href="#sobre-nosotros">Sobre Nosotros</a>
+    <a href="#servicios">Servicios</a>
+    <a href="#portfolio">Portfolio</a>
+    <a href="#branding">Branding</a>
+    <a href="#interiorismo">Interiorismo</a>
+    <a href="#moda">Moda</a>
+    <a href="#contacto">Contacto</a>
+  </div>
+
+  <!-- Hero -->
+  <section id="inicio">
+    <div class="hero-bg"></div>
+    <div class="hero-content">
+      <div class="hero-line"></div>
+      <h1>SANZAHRA</h1>
+      <p>Interiorismo &middot; Branding &middot; Moda &middot; Arquitectura</p>
+    </div>
+    <div class="hero-scroll"><span></span></div>
+  </section>
+
+  <!-- Marquee -->
+  <div class="marquee-container">
+    <div class="marquee">
+      <span>INTERIORISMO</span><span class="filled">&middot;</span>
+      <span>BRANDING</span><span class="filled">&middot;</span>
+      <span>EVENT PRODUCER</span><span class="filled">&middot;</span>
+      <span>MODA</span><span class="filled">&middot;</span>
+      <span>ARQUITECTURA</span><span class="filled">&middot;</span>
+      <span>ASISTENCIA EJECUTIVA</span><span class="filled">&middot;</span>
+      <span>INTERIORISMO</span><span class="filled">&middot;</span>
+      <span>BRANDING</span><span class="filled">&middot;</span>
+      <span>EVENT PRODUCER</span><span class="filled">&middot;</span>
+      <span>MODA</span><span class="filled">&middot;</span>
+      <span>ARQUITECTURA</span><span class="filled">&middot;</span>
+      <span>ASISTENCIA EJECUTIVA</span><span class="filled">&middot;</span>
+    </div>
+  </div>
+
+  <!-- Sobre Nosotros -->
+  <section id="sobre-nosotros">
+    <div class="about-grid">
+      <div class="about-image reveal"></div>
+      <div class="reveal">
+        <p class="section-label">Sobre Nosotros</p>
+        <h2 class="section-title">Donde la creatividad<br>se convierte en experiencia</h2>
+        <p class="section-text">
+          SANZAHRA es una empresa matriz que integra interiorismo, branding, moda, arquitectura y asistencia ejecutiva bajo una misma visi&oacute;n creativa. Nuestro enfoque multidisciplinar nos permite ofrecer soluciones integrales que transforman espacios, marcas y experiencias.
+        </p>
+        <br>
+        <p class="section-text">
+          Creemos en la fuerza de la est&eacute;tica, la precisi&oacute;n y la innovaci&oacute;n como pilares fundamentales de cada proyecto. Cada detalle cuenta, cada decisi&oacute;n tiene un prop&oacute;sito.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Image Break 1 -->
+  <div class="image-break" style="background-image:url('https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?w=1920&q=80')">
+    <div class="image-break-text">
+      <h3>Creamos experiencias &uacute;nicas</h3>
+      <p>Interiorismo &middot; Arquitectura &middot; Eventos</p>
+    </div>
+  </div>
+
+  <!-- Services Visual Grid -->
+  <section id="servicios">
+    <div style="max-width:1200px; margin: 0 auto;">
+      <p class="section-label reveal">Nuestros Servicios</p>
+      <h2 class="section-title reveal">Excelencia en cada disciplina</h2>
+    </div>
+    <div class="services-visual-grid reveal">
+      <div class="service-visual-card" style="background-image:url('https://images.unsplash.com/photo-1561070791-2526d30994b5?w=600&q=80')">
+        <span class="card-arrow">&nearr;</span>
+        <div class="card-content">
+          <div class="card-number">01</div>
+          <h3>Branding &amp; Marketing</h3>
+          <p>Estrategia de marca, identidad visual, comunicaci&oacute;n y posicionamiento.</p>
+        </div>
+      </div>
+      <div class="service-visual-card" style="background-image:url('https://images.unsplash.com/photo-1540575467063-178a50c2df87?w=600&q=80')">
+        <span class="card-arrow">&nearr;</span>
+        <div class="card-content">
+          <div class="card-number">02</div>
+          <h3>Event Producer</h3>
+          <p>Producci&oacute;n integral de eventos, dise&ntilde;o y construcci&oacute;n de stands.</p>
+        </div>
+      </div>
+      <div class="service-visual-card" style="background-image:url('https://images.unsplash.com/photo-1631679706909-1844bbd07221?w=600&q=80')">
+        <span class="card-arrow">&nearr;</span>
+        <div class="card-content">
+          <div class="card-number">03</div>
+          <h3>Interiorismo</h3>
+          <p>Dise&ntilde;o de interiores residencial, hotelero y para eventos.</p>
+        </div>
+      </div>
+      <div class="service-visual-card" style="background-image:url('https://images.unsplash.com/photo-1529139574466-a303027c1d8b?w=600&q=80')">
+        <span class="card-arrow">&nearr;</span>
+        <div class="card-content">
+          <div class="card-number">04</div>
+          <h3>Moda</h3>
+          <p>Creaci&oacute;n de marcas propias, producci&oacute;n de eventos de moda.</p>
+        </div>
+      </div>
+      <div class="service-visual-card" style="background-image:url('https://images.unsplash.com/photo-1487958449943-2429e8be8625?w=600&q=80')">
+        <span class="card-arrow">&nearr;</span>
+        <div class="card-content">
+          <div class="card-number">05</div>
+          <h3>Arquitectura</h3>
+          <p>Arquitectura conceptual, neuronal y ef&iacute;mera para corporaciones.</p>
+        </div>
+      </div>
+      <div class="service-visual-card" style="background-image:url('https://images.unsplash.com/photo-1497366216548-37526070297c?w=600&q=80')">
+        <span class="card-arrow">&nearr;</span>
+        <div class="card-content">
+          <div class="card-number">06</div>
+          <h3>Asistencia Ejecutiva</h3>
+          <p>Servicio concierge integral para empresas de primer nivel.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Image Break 2 -->
+  <div class="image-break" style="background-image:url('https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?w=1920&q=80')">
+    <div class="image-break-text">
+      <h3>Espacios que inspiran</h3>
+      <p>Dise&ntilde;o de interiores &middot; Residencial &middot; Hotelero</p>
+    </div>
+  </div>
+
+  <!-- Portfolio -->
+  <section id="portfolio">
+    <div style="max-width:1200px; margin: 0 auto;">
+      <p class="section-label reveal">Portfolio</p>
+      <h2 class="section-title reveal">Proyectos seleccionados</h2>
+    </div>
+    <div class="portfolio-grid reveal">
+      <div class="portfolio-item tall" style="background-image:url('https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?w=600&q=80')">
+        <div class="portfolio-info"><h4>Residencia Privada</h4><span>Interiorismo</span></div>
+      </div>
+      <div class="portfolio-item wide" style="background-image:url('https://images.unsplash.com/photo-1505236858219-8359eb29e329?w=800&q=80')">
+        <div class="portfolio-info"><h4>Fashion Week</h4><span>Moda &middot; Eventos</span></div>
+      </div>
+      <div class="portfolio-item" style="background-image:url('https://images.unsplash.com/photo-1600607687644-c7171b42498f?w=600&q=80')">
+        <div class="portfolio-info"><h4>Hotel Boutique</h4><span>Interiorismo &middot; Arquitectura</span></div>
+      </div>
+      <div class="portfolio-item" style="background-image:url('https://images.unsplash.com/photo-1545239351-ef35f43d514b?w=600&q=80')">
+        <div class="portfolio-info"><h4>Identidad Corporativa</h4><span>Branding</span></div>
+      </div>
+      <div class="portfolio-item wide" style="background-image:url('https://images.unsplash.com/photo-1511578314322-379afb476865?w=800&q=80')">
+        <div class="portfolio-info"><h4>Gala Ben&eacute;fica</h4><span>Event Producer</span></div>
+      </div>
+      <div class="portfolio-item" style="background-image:url('https://images.unsplash.com/photo-1600585154526-990dced4db0d?w=600&q=80')">
+        <div class="portfolio-info"><h4>Loft Contempor&aacute;neo</h4><span>Interiorismo</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Image Break 3 -->
+  <div class="image-break" style="background-image:url('https://images.unsplash.com/photo-1441986300917-64674bd600d8?w=1920&q=80')">
+    <div class="image-break-text">
+      <h3>Moda con visi&oacute;n</h3>
+      <p>Creaci&oacute;n de marcas &middot; Eventos &middot; Talento</p>
+    </div>
+  </div>
+
+  <!-- Branding -->
+  <section id="branding" class="bg-light">
+    <div class="service-detail reveal">
+      <p class="section-label">01 / Servicio</p>
+      <h2 class="section-title">Branding &amp; Marketing</h2>
+      <div class="service-detail-grid">
+        <div>
+          <p class="section-text">
+            Construimos identidades de marca s&oacute;lidas y coherentes. Desde la estrategia hasta la ejecuci&oacute;n visual, cada elemento comunica la esencia de tu negocio con precisi&oacute;n y elegancia.
+          </p>
+          <div class="tag-list">
+            <span class="tag">Identidad Visual</span>
+            <span class="tag">Estrategia de Marca</span>
+            <span class="tag">Comunicaci&oacute;n</span>
+            <span class="tag">Posicionamiento</span>
+            <span class="tag">Marketing Digital</span>
+            <span class="tag">Contenido</span>
+          </div>
+        </div>
+        <div class="service-detail-visual" style="background-image:url('https://images.unsplash.com/photo-1561070791-2526d30994b5?w=800&q=80')"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Interiorismo -->
+  <section id="interiorismo">
+    <div class="service-detail reveal">
+      <p class="section-label">02 / Servicio</p>
+      <h2 class="section-title">Interiorismo</h2>
+      <div class="service-detail-grid">
+        <div class="service-detail-visual" style="background-image:url('https://images.unsplash.com/photo-1631679706909-1844bbd07221?w=800&q=80')"></div>
+        <div>
+          <p class="section-text">
+            Dise&ntilde;amos espacios que cuentan historias. Desde residencias privadas hasta proyectos hoteleros y producci&oacute;n de stands, creamos atm&oacute;sferas que emocionan y perduran.
+          </p>
+          <div class="tag-list">
+            <span class="tag">Residencial</span>
+            <span class="tag">Hotelero</span>
+            <span class="tag">Event Producer</span>
+            <span class="tag">Stand Builder</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Moda -->
+  <section id="moda" class="bg-light">
+    <div class="service-detail reveal">
+      <p class="section-label">03 / Servicio</p>
+      <h2 class="section-title">Moda</h2>
+      <div class="service-detail-grid">
+        <div>
+          <p class="section-text">
+            Creamos, producimos y posicionamos marcas de moda. Desde la conceptualizaci&oacute;n hasta la producci&oacute;n de eventos y la formaci&oacute;n de nuevos talentos que definir&aacute;n el futuro.
+          </p>
+          <div class="tag-list">
+            <span class="tag">Creaci&oacute;n de Marcas</span>
+            <span class="tag">Producci&oacute;n de Eventos</span>
+            <span class="tag">Captaci&oacute;n de Talento</span>
+            <span class="tag">Formaci&oacute;n</span>
+          </div>
+        </div>
+        <div class="service-detail-visual" style="background-image:url('https://images.unsplash.com/photo-1529139574466-a303027c1d8b?w=800&q=80')"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Arquitectura -->
+  <section id="arquitectura">
+    <div class="service-detail reveal">
+      <p class="section-label">04 / Servicio</p>
+      <h2 class="section-title">Arquitectura</h2>
+      <div class="service-detail-grid">
+        <div class="service-detail-visual" style="background-image:url('https://images.unsplash.com/photo-1487958449943-2429e8be8625?w=800&q=80')"></div>
+        <div>
+          <p class="section-text">
+            Redefinimos los l&iacute;mites de la arquitectura con un enfoque conceptual, neuronal y ef&iacute;mero. Dise&ntilde;amos espacios que desaf&iacute;an lo convencional para corporaciones y eventos.
+          </p>
+          <div class="tag-list">
+            <span class="tag">Conceptual</span>
+            <span class="tag">Neuronal</span>
+            <span class="tag">Ef&iacute;mera</span>
+            <span class="tag">Corporativa</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Asistencia Ejecutiva -->
+  <section class="bg-light">
+    <div class="service-detail reveal">
+      <p class="section-label">05 / Servicio</p>
+      <h2 class="section-title">Asistencia Ejecutiva</h2>
+      <div class="service-detail-grid">
+        <div>
+          <p class="section-text">
+            Nuestro servicio concierge para empresas ofrece gesti&oacute;n integral y acompa&ntilde;amiento ejecutivo. Nos encargamos de cada detalle para que puedas centrarte en lo que realmente importa.
+          </p>
+          <div class="tag-list">
+            <span class="tag">Concierge Empresarial</span>
+            <span class="tag">Gesti&oacute;n Integral</span>
+            <span class="tag">Coordinaci&oacute;n</span>
+          </div>
+        </div>
+        <div class="service-detail-visual" style="background-image:url('https://images.unsplash.com/photo-1497366216548-37526070297c?w=800&q=80')"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact -->
+  <section id="contacto">
+    <div style="max-width:1200px; margin: 0 auto;">
+      <p class="section-label reveal">Contacto</p>
+      <h2 class="section-title reveal">Hablemos de tu<br>pr&oacute;ximo proyecto</h2>
+      <div class="contact-grid reveal">
+        <div class="contact-info">
+          <p>
+            Estamos listos para escucharte.<br>
+            Cada gran proyecto empieza con una conversaci&oacute;n.<br><br>
+            <a href="mailto:info@sanzahra.com">info@sanzahra.com</a><br>
+            +34 000 000 000
+          </p>
+        </div>
+        <form class="contact-form" onsubmit="event.preventDefault()">
+          <input type="text" placeholder="NOMBRE" />
+          <input type="email" placeholder="EMAIL" />
+          <input type="text" placeholder="ASUNTO" />
+          <textarea placeholder="MENSAJE"></textarea>
+          <button type="submit">Enviar mensaje</button>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <span class="footer-logo">SANZAHRA</span>
+    <p>&copy; 2026 SANZAHRA. Todos los derechos reservados.</p>
+  </footer>
+
+  <script>
+    // ── Maintenance Mode ──
+    const MAINT_PASS = 'Snzhr@2026!';
+    const maintenance = document.getElementById('maintenance');
+    const maintPass = document.getElementById('maintPass');
+    const maintBtn = document.getElementById('maintBtn');
+    const maintError = document.getElementById('maintError');
+    const maintForm = document.querySelector('.maint-form');
+
+    if (localStorage.getItem('sanzahra_access') === 'granted') {
+      maintenance.classList.add('unlocked');
+    }
+
+    function tryAccess() {
+      if (maintPass.value === MAINT_PASS) {
+        localStorage.setItem('sanzahra_access', 'granted');
+        maintenance.classList.add('unlocked');
+        maintError.classList.remove('show');
+      } else {
+        maintError.classList.add('show');
+        maintForm.classList.add('shake');
+        setTimeout(() => maintForm.classList.remove('shake'), 400);
+      }
+    }
+
+    maintBtn.addEventListener('click', tryAccess);
+    maintPass.addEventListener('keydown', (e) => { if (e.key === 'Enter') tryAccess(); });
+
+    // Loader
+    window.addEventListener('load', () => {
+      setTimeout(() => document.getElementById('loader').classList.add('hide'), 1200);
+    });
+
+    // Nav scroll
+    const nav = document.getElementById('mainNav');
+    window.addEventListener('scroll', () => {
+      nav.classList.toggle('scrolled', window.scrollY > 80);
+    });
+
+    // Hamburger
+    const hamburger = document.getElementById('hamburger');
+    const mobileMenu = document.getElementById('mobileMenu');
+    hamburger.addEventListener('click', () => {
+      hamburger.classList.toggle('open');
+      mobileMenu.classList.toggle('open');
+    });
+    mobileMenu.querySelectorAll('a').forEach(a => {
+      a.addEventListener('click', () => {
+        hamburger.classList.remove('open');
+        mobileMenu.classList.remove('open');
+      });
+    });
+
+    // Reveal on scroll
+    const reveals = document.querySelectorAll('.reveal');
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); observer.unobserve(e.target); } });
+    }, { threshold: 0.1 });
+    reveals.forEach(el => observer.observe(el));
+  </script>
+</body>
+</html>
