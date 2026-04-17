@@ -131,6 +131,101 @@
   });
 })();
 
+// ── Hero Slider ──
+(function () {
+  const slider = document.querySelector('.hero-slider');
+  if (!slider) return;
+  const slides = slider.querySelectorAll('.hero-slide');
+  const dots = document.querySelectorAll('.hero-slider-dot');
+  const label = document.querySelector('.hero-slide-label');
+  if (slides.length <= 1) return;
+
+  let current = 0;
+  const activate = (i) => {
+    slides.forEach((s, idx) => s.classList.toggle('active', idx === i));
+    dots.forEach((d, idx) => d.classList.toggle('active', idx === i));
+    if (label) {
+      const lbl = slides[i].dataset.label;
+      if (lbl) {
+        label.style.opacity = '0';
+        setTimeout(() => { label.textContent = lbl; label.style.opacity = '1'; }, 300);
+      }
+    }
+    current = i;
+  };
+
+  dots.forEach((dot, i) => dot.addEventListener('click', () => activate(i)));
+
+  setInterval(() => activate((current + 1) % slides.length), 5500);
+})();
+
+// ── Lightbox para Portfolio ──
+(function () {
+  const items = document.querySelectorAll('.portfolio-item, .masonry-item, [data-lightbox]');
+  if (!items.length) return;
+
+  const lb = document.createElement('div');
+  lb.id = 'lightbox';
+  lb.innerHTML = `
+    <button class="lightbox-close" aria-label="Cerrar">✕</button>
+    <button class="lightbox-prev" aria-label="Anterior">←</button>
+    <img alt="" />
+    <button class="lightbox-next" aria-label="Siguiente">→</button>
+    <div class="lightbox-caption"></div>
+  `;
+  document.body.appendChild(lb);
+  const img = lb.querySelector('img');
+  const caption = lb.querySelector('.lightbox-caption');
+  const close = lb.querySelector('.lightbox-close');
+  const prev = lb.querySelector('.lightbox-prev');
+  const next = lb.querySelector('.lightbox-next');
+
+  const images = [...items].map(el => {
+    const bg = el.style.backgroundImage || '';
+    const innerBg = el.querySelector('.img')?.style.backgroundImage || '';
+    const style = innerBg || bg;
+    const m = style.match(/url\(['"]?([^'"]+)['"]?\)/);
+    const title = el.querySelector('h4')?.textContent?.trim();
+    const tag = el.querySelector('span')?.textContent?.trim();
+    return { src: m ? m[1] : null, title, tag };
+  }).filter(x => x.src);
+
+  let currentIdx = 0;
+
+  const show = (i) => {
+    currentIdx = (i + images.length) % images.length;
+    const big = images[currentIdx].src.replace(/[?&]w=\d+/, '').replace(/\?q=\d+/, '') + (images[currentIdx].src.includes('unsplash.com') ? '?w=1800&q=90' : '');
+    img.src = big;
+    caption.textContent = [images[currentIdx].title, images[currentIdx].tag].filter(Boolean).join(' · ');
+    lb.classList.add('open');
+    document.body.style.overflow = 'hidden';
+  };
+
+  const hide = () => {
+    lb.classList.remove('open');
+    document.body.style.overflow = '';
+  };
+
+  items.forEach((el, i) => {
+    el.addEventListener('click', (e) => {
+      if (el.tagName === 'A' && el.getAttribute('href') && el.getAttribute('href') !== '#') return;
+      e.preventDefault();
+      show(i);
+    });
+  });
+
+  close.addEventListener('click', hide);
+  prev.addEventListener('click', () => show(currentIdx - 1));
+  next.addEventListener('click', () => show(currentIdx + 1));
+  lb.addEventListener('click', (e) => { if (e.target === lb) hide(); });
+  document.addEventListener('keydown', (e) => {
+    if (!lb.classList.contains('open')) return;
+    if (e.key === 'Escape') hide();
+    if (e.key === 'ArrowLeft') show(currentIdx - 1);
+    if (e.key === 'ArrowRight') show(currentIdx + 1);
+  });
+})();
+
 // ── Active nav link ──
 (function () {
   const path = window.location.pathname.split('/').pop() || 'index.html';
