@@ -29,18 +29,38 @@
 
   <div id="loader"><span>SANZAHRA</span></div>
 
-  <nav id="mainNav" data-transparent="true">
+    <nav id="mainNav" data-transparent="true">
     <ul class="nav-links nav-links-left">
       <li><a href="index.html">Inicio</a></li>
       <li><a href="sobre-nosotros.html">Sobre Nosotros</a></li>
-      <li><a href="servicios.html">Servicios</a></li>
+      <li class="has-dropdown">
+        <a href="servicios.html" class="dropdown-toggle">Servicios</a>
+        <ul class="dropdown">
+          <li><a href="branding.html">Branding &amp; Marketing</a></li>
+          <li><a href="interiorismo.html">Interiorismo</a></li>
+          <li><a href="moda.html">Moda</a></li>
+          <li><a href="arquitectura.html">Arquitectura</a></li>
+          <li><a href="event-producer.html">Event Producer</a></li>
+          <li><a href="asistencia-ejecutiva.html">Asistencia Ejecutiva</a></li>
+        </ul>
+      </li>
       <li><a href="portfolio.html">Portfolio</a></li>
     </ul>
     <a href="index.html" class="logo">SANZAHRA</a>
     <ul class="nav-links nav-links-right">
-      <li><a href="interiorismo.html">Interiorismo</a></li>
-      <li><a href="moda.html">Moda</a></li>
-      <li><a href="arquitectura.html">Arquitectura</a></li>
+      <li class="has-dropdown">
+        <a href="servicios.html" class="dropdown-toggle">Explorar</a>
+        <ul class="dropdown">
+          <li><a href="interiorismo.html">Interiorismo</a></li>
+          <li><a href="moda.html">Moda</a></li>
+          <li><a href="arquitectura.html">Arquitectura</a></li>
+          <li><a href="branding.html">Branding</a></li>
+          <li><a href="event-producer.html">Event Producer</a></li>
+          <li><a href="asistencia-ejecutiva.html">Asistencia Ejecutiva</a></li>
+        </ul>
+      </li>
+      <li><a href="portfolio.html">Portfolio</a></li>
+      <li><a href="sobre-nosotros.html">Nosotros</a></li>
       <li><a href="contacto.html">Contacto</a></li>
     </ul>
     <div class="hamburger" id="hamburger"><span></span><span></span><span></span></div>
@@ -61,11 +81,11 @@
   </div>
 
   <section class="page-hero">
-    <div class="hero-bg" style="background-image:url('https://images.unsplash.com/photo-1497366216548-37526070297c?w=1920&q=80')"></div>
+    <div class="hero-bg" style="background-image:url('https://images.unsplash.com/photo-1423666639041-f56000c27a9a?w=1920&q=80')"></div>
     <div class="page-hero-content">
       <p class="kicker">Contacto</p>
-      <h1>Hablemos</h1>
-      <p class="subtitle">Cada proyecto empieza con una conversaci&oacute;n.</p>
+      <h1>Hablemos de tu<br>pr&oacute;ximo proyecto</h1>
+      <p class="subtitle">Cada gran proyecto empieza con una conversaci&oacute;n sincera. Cu&eacute;ntanos tu idea y exploremos c&oacute;mo podemos darle forma juntos.</p>
     </div>
   </section>
 
@@ -74,23 +94,23 @@
   <section class="bg-dark">
     <div class="contact-grid">
       <div class="contact-info">
-        <p class="section-label">Inform&aacute;cion</p>
+        <p class="section-label">Informaci&oacute;n</p>
         <h2 class="section-title">Estamos<br>a tu disposici&oacute;n</h2>
-        <p>Nos encantar&iacute;a conocer tu proyecto. Escr&iacute;benos, ll&aacute;manos o visita nuestras oficinas en Madrid. Respondemos en un plazo m&aacute;ximo de 24 horas laborables.</p>
+        <p>Escr&iacute;benos, ll&aacute;manos o vis&iacute;tanos en Madrid. Respondemos en un plazo m&aacute;ximo de 24 horas laborables, siempre con una propuesta personalizada.</p>
         <ul>
           <li><strong>Email</strong><a href="mailto:info@sanzahra.com">info@sanzahra.com</a></li>
           <li><strong>Tel&eacute;fono</strong><a href="tel:+34000000000">+34 000 000 000</a></li>
-          <li><strong>Direcci&oacute;n</strong><span>Calle Serrano, 28006 Madrid, Espa&ntilde;a</span></li>
-          <li><strong>Horario</strong><span>Lun-Vie 09:00 - 19:00</span></li>
+          <li><strong>Oficina</strong><span>Calle Serrano 45, 28006 Madrid</span></li>
+          <li><strong>Horario</strong><span>Lunes a viernes &middot; 09:00 &mdash; 19:00</span></li>
         </ul>
       </div>
-      <form class="contact-form" onsubmit="event.preventDefault()">
+      <form class="contact-form" onsubmit="event.preventDefault(); alert('Mensaje enviado. Gracias por tu inter\u00e9s.'); this.reset();">
         <label>
-          <span>Nombre</span>
+          <span>Nombre completo</span>
           <input type="text" name="nombre" placeholder="Tu nombre" required />
         </label>
         <label>
-          <span>Email</span>
+          <span>Correo electr&oacute;nico</span>
           <input type="email" name="email" placeholder="tu@email.com" required />
         </label>
         <label>
@@ -98,14 +118,14 @@
           <input type="tel" name="telefono" placeholder="+34 000 000 000" />
         </label>
         <label>
-          <span>Asunto</span>
-          <input type="text" name="asunto" placeholder="Asunto de tu consulta" />
+          <span>&iquest;Qu&eacute; servicio te interesa?</span>
+          <input type="text" name="asunto" placeholder="Interiorismo, Branding, Moda..." />
         </label>
         <label>
           <span>Mensaje</span>
-          <textarea name="mensaje" rows="5" placeholder="Cu&eacute;ntanos sobre tu proyecto" required></textarea>
+          <textarea name="mensaje" rows="5" placeholder="Cu&eacute;ntanos brevemente sobre tu proyecto" required></textarea>
         </label>
-        <button type="submit" class="btn btn-light">Enviar mensaje</button>
+        <button type="submit">Enviar mensaje</button>
       </form>
     </div>
   </section>
