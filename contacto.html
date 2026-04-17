@@ -29,13 +29,14 @@
 
   <div id="loader"><span>SANZAHRA</span></div>
 
-    <nav id="mainNav" data-transparent="true">
+      <nav id="mainNav" data-transparent="true">
     <ul class="nav-links nav-links-left">
       <li><a href="index.html">Inicio</a></li>
       <li><a href="sobre-nosotros.html">Sobre Nosotros</a></li>
       <li class="has-dropdown">
         <a href="servicios.html" class="dropdown-toggle">Servicios</a>
         <ul class="dropdown">
+          <li><a href="servicios.html">Ver todos</a></li>
           <li><a href="branding.html">Branding &amp; Marketing</a></li>
           <li><a href="interiorismo.html">Interiorismo</a></li>
           <li><a href="moda.html">Moda</a></li>
@@ -48,19 +49,9 @@
     </ul>
     <a href="index.html" class="logo">SANZAHRA</a>
     <ul class="nav-links nav-links-right">
-      <li class="has-dropdown">
-        <a href="servicios.html" class="dropdown-toggle">Explorar</a>
-        <ul class="dropdown">
-          <li><a href="interiorismo.html">Interiorismo</a></li>
-          <li><a href="moda.html">Moda</a></li>
-          <li><a href="arquitectura.html">Arquitectura</a></li>
-          <li><a href="branding.html">Branding</a></li>
-          <li><a href="event-producer.html">Event Producer</a></li>
-          <li><a href="asistencia-ejecutiva.html">Asistencia Ejecutiva</a></li>
-        </ul>
-      </li>
-      <li><a href="portfolio.html">Portfolio</a></li>
-      <li><a href="sobre-nosotros.html">Nosotros</a></li>
+      <li><a href="interiorismo.html">Interiorismo</a></li>
+      <li><a href="moda.html">Moda</a></li>
+      <li><a href="arquitectura.html">Arquitectura</a></li>
       <li><a href="contacto.html">Contacto</a></li>
     </ul>
     <div class="hamburger" id="hamburger"><span></span><span></span><span></span></div>
@@ -80,30 +71,23 @@
     <a href="contacto.html">Contacto</a>
   </div>
 
-  <section class="page-hero">
-    <div class="hero-bg" style="background-image:url('https://images.unsplash.com/photo-1423666639041-f56000c27a9a?w=1920&q=80')"></div>
+  <section class="page-hero short">
+    <div class="hero-bg" style="background-image:url('https://images.unsplash.com/photo-1539037116277-4db20889f2d4?w=1920&q=80')"></div>
     <div class="page-hero-content">
       <p class="kicker">Contacto</p>
-      <h1>Hablemos de tu<br>pr&oacute;ximo proyecto</h1>
-      <p class="subtitle">Cada gran proyecto empieza con una conversaci&oacute;n sincera. Cu&eacute;ntanos tu idea y exploremos c&oacute;mo podemos darle forma juntos.</p>
+      <h1>Hablemos</h1>
+      <p class="subtitle">Cada gran proyecto empieza con una conversaci&oacute;n sincera.</p>
     </div>
   </section>
 
   <nav class="breadcrumb"><a href="index.html">Inicio</a> <span>/</span> Contacto</nav>
 
-  <section class="bg-dark">
-    <div class="contact-grid">
-      <div class="contact-info">
-        <p class="section-label">Informaci&oacute;n</p>
-        <h2 class="section-title">Estamos<br>a tu disposici&oacute;n</h2>
-        <p>Escr&iacute;benos, ll&aacute;manos o vis&iacute;tanos en Madrid. Respondemos en un plazo m&aacute;ximo de 24 horas laborables, siempre con una propuesta personalizada.</p>
-        <ul>
-          <li><strong>Email</strong><a href="mailto:info@sanzahra.com">info@sanzahra.com</a></li>
-          <li><strong>Tel&eacute;fono</strong><a href="tel:+34000000000">+34 000 000 000</a></li>
-          <li><strong>Oficina</strong><span>Calle Serrano 45, 28006 Madrid</span></li>
-          <li><strong>Horario</strong><span>Lunes a viernes &middot; 09:00 &mdash; 19:00</span></li>
-        </ul>
-      </div>
+  <!-- Split asimétrico: imagen + formulario -->
+  <div class="contact-split">
+    <div class="contact-side-image" style="background-image:url('https://images.unsplash.com/photo-1517991104123-1d56a6e81ed9?w=1200&q=80')"></div>
+    <div class="contact-side-form">
+      <h2>Cu&eacute;ntanos tu proyecto</h2>
+      <p>Respondemos en menos de 24 horas laborables con una propuesta personalizada.</p>
       <form class="contact-form" onsubmit="event.preventDefault(); alert('Mensaje enviado. Gracias por tu inter\u00e9s.'); this.reset();">
         <label>
           <span>Nombre completo</span>
@@ -128,26 +112,56 @@
         <button type="submit">Enviar mensaje</button>
       </form>
     </div>
+  </div>
+
+  <!-- Quick info horizontal -->
+  <section>
+    <div class="contact-quick-info reveal">
+      <div class="item">
+        <div class="icon-line"></div>
+        <h5>Email</h5>
+        <a href="mailto:info@sanzahra.com">info@sanzahra.com</a>
+      </div>
+      <div class="item">
+        <div class="icon-line"></div>
+        <h5>Tel&eacute;fono</h5>
+        <a href="tel:+34000000000">+34 000 000 000</a>
+      </div>
+      <div class="item">
+        <div class="icon-line"></div>
+        <h5>Oficina</h5>
+        <p>Calle Serrano 45<br>28006 Madrid</p>
+      </div>
+      <div class="item">
+        <div class="icon-line"></div>
+        <h5>Horario</h5>
+        <p>Lun &mdash; Vie<br>09:00 &mdash; 19:00</p>
+      </div>
+    </div>
   </section>
 
+  <!-- Mapa decorativo -->
+  <div class="contact-map reveal" style="background-image:url('https://images.unsplash.com/photo-1565701124030-8f519aea40de?w=1920&q=80')"></div>
+
+  <!-- FAQ -->
   <section class="bg-light">
     <div class="container">
-      <p class="section-label reveal">Nuestro compromiso</p>
-      <h2 class="section-title reveal">C&oacute;mo trabajamos<br>contigo</h2>
+      <p class="section-label reveal">Preguntas frecuentes</p>
+      <h2 class="section-title reveal">Resolvemos tus dudas</h2>
     </div>
-    <div class="features reveal">
-      <div class="feature">
-        <h4>Respuesta en 24h</h4>
-        <p>Valoramos tu tiempo. Todas las consultas recibidas en d&iacute;a laborable reciben una primera respuesta en menos de veinticuatro horas.</p>
-      </div>
-      <div class="feature">
-        <h4>Consulta inicial gratuita</h4>
-        <p>Estudiamos tu caso sin compromiso. Analizamos tus necesidades y te proponemos el enfoque m&aacute;s adecuado antes de cualquier presupuesto.</p>
-      </div>
-      <div class="feature">
-        <h4>Proyectos internacionales</h4>
-        <p>Operamos en Espa&ntilde;a y en el extranjero. Nuestro equipo viaja all&iacute; donde el proyecto lo requiera, garantizando la misma excelencia en cualquier geograf&iacute;a.</p>
-      </div>
+    <div class="faq reveal">
+      <details>
+        <summary>&iquest;Cu&aacute;nto tiempo lleva un proyecto t&iacute;pico?</summary>
+        <p>Depende enormemente del alcance. Una identidad de marca puede desarrollarse en seis a ocho semanas; un interiorismo residencial completo oscila entre cuatro y nueve meses; un hotel boutique, entre doce y dieciocho. Tras la primera reuni&oacute;n te entregamos un calendario detallado con hitos claros.</p>
+      </details>
+      <details>
+        <summary>&iquest;Trabaj&aacute;is fuera de Espa&ntilde;a?</summary>
+        <p>S&iacute;. Aunque nuestra sede est&aacute; en Madrid, habitualmente desarrollamos proyectos en Francia, Italia, Portugal, Reino Unido y M&eacute;xico. Para encargos internacionales contamos con una red de colaboradores locales de confianza que garantizan la misma exigencia sobre el terreno.</p>
+      </details>
+      <details>
+        <summary>&iquest;Ofrec&eacute;is consulta inicial sin compromiso?</summary>
+        <p>Por supuesto. La primera conversaci&oacute;n es siempre gratuita. Analizamos tu caso, escuchamos tus objetivos y te proponemos el enfoque m&aacute;s adecuado antes de cualquier presupuesto. Solo avanzamos cuando hay un encaje real entre lo que necesitas y lo que podemos aportar.</p>
+      </details>
     </div>
   </section>
 

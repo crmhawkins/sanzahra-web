@@ -34,10 +34,19 @@
 })();
 
 // ── Loader ──
-window.addEventListener('load', () => {
+(function () {
   const loader = document.getElementById('loader');
-  if (loader) setTimeout(() => loader.classList.add('hide'), 900);
-});
+  if (!loader) return;
+  const hideLoader = () => loader.classList.add('hide');
+  // Fallback: hide after 1.5s no matter what
+  setTimeout(hideLoader, 1500);
+  // Also hide on load event if earlier
+  if (document.readyState === 'complete') {
+    setTimeout(hideLoader, 600);
+  } else {
+    window.addEventListener('load', () => setTimeout(hideLoader, 600));
+  }
+})();
 
 // ── Nav scroll ──
 (function () {
