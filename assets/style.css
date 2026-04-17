@@ -110,19 +110,23 @@ nav.solid {
 nav .logo {
   grid-column: 2;
   font-family: var(--serif);
-  font-size: 2.2rem;
+  font-size: 3rem;
   font-weight: 500;
-  letter-spacing: .28em;
+  letter-spacing: .3em;
   color: var(--white);
   text-decoration: none;
   transition: color .4s, font-size .4s;
   text-align: center;
   line-height: 1;
 }
+/* En el inicio el logo se mantiene más discreto */
+body.is-home nav .logo { font-size: 2.2rem; letter-spacing: .28em; }
 nav.scrolled .logo,
-nav.solid .logo { font-size: 1.8rem; }
+nav.solid .logo { font-size: 2rem; letter-spacing: .25em; }
+body.is-home nav.scrolled .logo { font-size: 1.8rem; }
 @media (max-width: 900px) {
-  nav .logo { font-size: 1.5rem; }
+  nav .logo { font-size: 1.8rem; }
+  body.is-home nav .logo { font-size: 1.5rem; }
 }
 nav.scrolled .logo,
 nav.solid .logo { color: var(--black); }
@@ -219,7 +223,7 @@ nav.solid .hamburger span { background: var(--black); }
 .hero-slide {
   position: absolute; inset: 0;
   background-size: cover; background-position: center;
-  opacity: 0; transition: opacity 1.6s ease;
+  opacity: 0; transition: opacity .9s ease;
 }
 .hero-slide.active { opacity: 1; }
 .hero-slide::before {

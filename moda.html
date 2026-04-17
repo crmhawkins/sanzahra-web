@@ -29,7 +29,7 @@
 
   <div id="loader"><span>SANZAHRA</span></div>
 
-        <nav id="mainNav" data-transparent="true">
+          <nav id="mainNav" data-transparent="true">
     <ul class="nav-links nav-links-left">
       <li><a href="index.html">Inicio</a></li>
       <li><a href="sobre-nosotros.html">Sobre Nosotros</a></li>
@@ -38,10 +38,10 @@
         <ul class="dropdown">
           <li><a href="servicios.html">Ver todos</a></li>
           <li><a href="moda.html">Moda</a></li>
-          <li><a href="interiorismo.html">Interiorismo</a></li>
           <li><a href="branding.html">Branding</a></li>
+          <li><a href="event-producer.html">Producci&oacute;n de Eventos</a></li>
+          <li><a href="interiorismo.html">Interiorismo</a></li>
           <li><a href="arquitectura.html">Arquitectura</a></li>
-          <li><a href="event-producer.html">Event Producer</a></li>
           <li><a href="asistencia-ejecutiva.html">Asistencia Ejecutiva</a></li>
         </ul>
       </li>
@@ -49,25 +49,33 @@
     </ul>
     <a href="index.html" class="logo">SANZAHRA</a>
     <ul class="nav-links nav-links-right">
-      <li><a href="moda.html">Moda</a></li>
-      <li><a href="interiorismo.html">Interiorismo</a></li>
+      <li class="has-dropdown">
+        <a href="moda.html" class="dropdown-toggle">Moda</a>
+        <ul class="dropdown">
+          <li><a href="moda.html#marcas-propias">Marcas propias</a></li>
+          <li><a href="moda.html#colaboraciones">Colaboraciones</a></li>
+          <li><a href="moda.html#talento">Talento</a></li>
+          <li><a href="moda.html#identidad">Identidad de marcas</a></li>
+        </ul>
+      </li>
       <li><a href="branding.html">Branding</a></li>
-      <li><a href="arquitectura.html">Arquitectura</a></li>
+      <li><a href="event-producer.html">Producci&oacute;n de Eventos</a></li>
+      <li><a href="interiorismo.html">Interiorismo</a></li>
       <li><a href="contacto.html">Contacto</a></li>
     </ul>
     <div class="hamburger" id="hamburger"><span></span><span></span><span></span></div>
   </nav>
 
-    <div class="mobile-menu" id="mobileMenu">
+      <div class="mobile-menu" id="mobileMenu">
     <a href="index.html">Inicio</a>
     <a href="sobre-nosotros.html">Sobre Nosotros</a>
     <a href="servicios.html">Servicios</a>
     <a href="portfolio.html">Portfolio</a>
     <a href="moda.html">Moda</a>
-    <a href="interiorismo.html">Interiorismo</a>
     <a href="branding.html">Branding</a>
+    <a href="event-producer.html">Producci&oacute;n de Eventos</a>
+    <a href="interiorismo.html">Interiorismo</a>
     <a href="arquitectura.html">Arquitectura</a>
-    <a href="event-producer.html">Event Producer</a>
     <a href="asistencia-ejecutiva.html">Asistencia Ejecutiva</a>
     <a href="contacto.html">Contacto</a>
   </div>
@@ -98,7 +106,7 @@
   </section>
 
   <!-- Marcas Propias: La Florecilla -->
-  <section class="bg-light">
+  <section id="marcas-propias" class="bg-light" style="scroll-margin-top: 100px;">
     <div class="container">
       <p class="section-label reveal">Marcas propias</p>
       <h2 class="section-title reveal">Construimos universos<br>de marca completos</h2>
@@ -113,6 +121,21 @@
     </div>
   </section>
 
+  <!-- Colaboraciones -->
+  <section id="colaboraciones" style="scroll-margin-top: 100px;">
+    <div class="container">
+      <div class="two-col">
+        <div class="reveal">
+          <p class="section-label">Colaboraciones</p>
+          <h2 class="section-title">Dise&ntilde;adores,<br>firmas e instituciones</h2>
+          <p class="section-text">Colaboramos con marcas consolidadas, dise&ntilde;adores emergentes y proyectos culturales que comparten nuestra visi&oacute;n. Aportamos direcci&oacute;n creativa, producci&oacute;n y comunicaci&oacute;n a colecciones c&aacute;psula, capsulas editoriales, campa&ntilde;as compartidas y presentaciones conjuntas.</p>
+          <p class="section-text">Cada colaboraci&oacute;n se dise&ntilde;a como un proyecto &uacute;nico: desde el brief inicial hasta la pieza final, cuidando la coherencia est&eacute;tica y la narrativa que hay detr&aacute;s.</p>
+        </div>
+        <div class="two-col-image reveal" style="background-image:url('https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?w=800&q=80')"></div>
+      </div>
+    </div>
+  </section>
+
   <div class="image-break" style="background-image:url('https://images.unsplash.com/photo-1490481651871-ab68de25d43d?w=1920&q=80')">
     <div class="image-break-text">
       <h3>La moda no viste: narra</h3>
@@ -121,7 +144,7 @@
   </div>
 
   <!-- Captación de talento con formulario -->
-  <section>
+  <section id="talento" class="bg-light" style="scroll-margin-top: 100px;">
     <div class="container">
       <div class="two-col">
         <div class="two-col-image reveal" style="background-image:url('https://images.unsplash.com/photo-1509631179647-0177331693ae?w=800&q=80')"></div>
@@ -139,6 +162,29 @@
             <button type="submit">Enviar candidatura</button>
           </form>
         </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Identidad de Marcas (Branding para firmas de moda) -->
+  <section id="identidad" style="scroll-margin-top: 100px;">
+    <div class="container">
+      <div class="two-col reverse">
+        <div class="reveal">
+          <p class="section-label">Identidad de marcas</p>
+          <h2 class="section-title">Branding pensado<br>para la moda</h2>
+          <p class="section-text">Trabajamos la identidad visual de firmas de moda, dise&ntilde;adores independientes y boutiques: naming, logotipos, paletas, tipograf&iacute;as, sistemas gr&aacute;ficos, packaging y presencia digital. Todo pensado para que la marca tenga la misma voz coherente desde la etiqueta hasta la campa&ntilde;a.</p>
+          <p class="section-text">Cuando una identidad est&aacute; bien construida, se reconoce en el primer golpe de vista. Y eso cambia por completo c&oacute;mo el mercado percibe una marca de moda.</p>
+          <div class="tag-list reveal">
+            <span class="tag">Naming</span>
+            <span class="tag">Logo y s&iacute;mbolo</span>
+            <span class="tag">Sistema visual</span>
+            <span class="tag">Packaging</span>
+            <span class="tag">Presencia digital</span>
+            <span class="tag">Lookbooks</span>
+          </div>
+        </div>
+        <div class="two-col-image reveal" style="background-image:url('https://images.unsplash.com/photo-1586953208448-b95a79798f07?w=800&q=80')"></div>
       </div>
     </div>
   </section>

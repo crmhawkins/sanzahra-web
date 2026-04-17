@@ -11,7 +11,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="assets/style.css" />
 </head>
-<body>
+<body class="is-home">
 
   <!-- Maintenance Gate -->
   <div id="maintenance">
@@ -32,7 +32,7 @@
   <div id="loader"><span>SANZAHRA</span></div>
 
   <!-- Nav -->
-        <nav id="mainNav" data-transparent="true">
+          <nav id="mainNav" data-transparent="true">
     <ul class="nav-links nav-links-left">
       <li><a href="index.html">Inicio</a></li>
       <li><a href="sobre-nosotros.html">Sobre Nosotros</a></li>
@@ -41,10 +41,10 @@
         <ul class="dropdown">
           <li><a href="servicios.html">Ver todos</a></li>
           <li><a href="moda.html">Moda</a></li>
-          <li><a href="interiorismo.html">Interiorismo</a></li>
           <li><a href="branding.html">Branding</a></li>
+          <li><a href="event-producer.html">Producci&oacute;n de Eventos</a></li>
+          <li><a href="interiorismo.html">Interiorismo</a></li>
           <li><a href="arquitectura.html">Arquitectura</a></li>
-          <li><a href="event-producer.html">Event Producer</a></li>
           <li><a href="asistencia-ejecutiva.html">Asistencia Ejecutiva</a></li>
         </ul>
       </li>
@@ -52,26 +52,34 @@
     </ul>
     <a href="index.html" class="logo">SANZAHRA</a>
     <ul class="nav-links nav-links-right">
-      <li><a href="moda.html">Moda</a></li>
-      <li><a href="interiorismo.html">Interiorismo</a></li>
+      <li class="has-dropdown">
+        <a href="moda.html" class="dropdown-toggle">Moda</a>
+        <ul class="dropdown">
+          <li><a href="moda.html#marcas-propias">Marcas propias</a></li>
+          <li><a href="moda.html#colaboraciones">Colaboraciones</a></li>
+          <li><a href="moda.html#talento">Talento</a></li>
+          <li><a href="moda.html#identidad">Identidad de marcas</a></li>
+        </ul>
+      </li>
       <li><a href="branding.html">Branding</a></li>
-      <li><a href="arquitectura.html">Arquitectura</a></li>
+      <li><a href="event-producer.html">Producci&oacute;n de Eventos</a></li>
+      <li><a href="interiorismo.html">Interiorismo</a></li>
       <li><a href="contacto.html">Contacto</a></li>
     </ul>
     <div class="hamburger" id="hamburger"><span></span><span></span><span></span></div>
   </nav>
 
   <!-- Mobile Menu -->
-    <div class="mobile-menu" id="mobileMenu">
+      <div class="mobile-menu" id="mobileMenu">
     <a href="index.html">Inicio</a>
     <a href="sobre-nosotros.html">Sobre Nosotros</a>
     <a href="servicios.html">Servicios</a>
     <a href="portfolio.html">Portfolio</a>
     <a href="moda.html">Moda</a>
-    <a href="interiorismo.html">Interiorismo</a>
     <a href="branding.html">Branding</a>
+    <a href="event-producer.html">Producci&oacute;n de Eventos</a>
+    <a href="interiorismo.html">Interiorismo</a>
     <a href="arquitectura.html">Arquitectura</a>
-    <a href="event-producer.html">Event Producer</a>
     <a href="asistencia-ejecutiva.html">Asistencia Ejecutiva</a>
     <a href="contacto.html">Contacto</a>
   </div>
@@ -79,15 +87,15 @@
   <!-- Hero Slider -->
   <section class="hero">
     <div class="hero-slider">
-      <div class="hero-slide active" data-label="Moda" style="background-image:url('https://images.unsplash.com/photo-1490481651871-ab68de25d43d?w=1920&q=80')"></div>
-      <div class="hero-slide" data-label="Interiorismo" style="background-image:url('https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?w=1920&q=80')"></div>
+      <div class="hero-slide active" data-label="Moda" style="background-image:url('https://images.unsplash.com/photo-1509631179647-0177331693ae?w=1920&q=80')"></div>
+      <div class="hero-slide" data-label="Producci&oacute;n de Eventos" style="background-image:url('https://images.unsplash.com/photo-1511795409834-ef04bbd61622?w=1920&q=80')"></div>
       <div class="hero-slide" data-label="Branding" style="background-image:url('https://images.unsplash.com/photo-1561070791-2526d30994b5?w=1920&q=80')"></div>
-      <div class="hero-slide" data-label="Arquitectura" style="background-image:url('https://images.unsplash.com/photo-1487958449943-2429e8be8625?w=1920&q=80')"></div>
+      <div class="hero-slide" data-label="Interiorismo" style="background-image:url('https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?w=1920&q=80')"></div>
     </div>
     <div class="hero-content">
       <div class="hero-line"></div>
       <h1>SANZAHRA</h1>
-      <p>Moda &middot; Interiorismo &middot; Branding &middot; Arquitectura</p>
+      <p>Moda &middot; Branding &middot; Producci&oacute;n de Eventos &middot; Interiorismo</p>
     </div>
     <div class="hero-slide-label">Moda</div>
     <div class="hero-slider-dots">
@@ -102,18 +110,18 @@
   <!-- Marquee -->
   <div class="marquee-container">
     <div class="marquee">
-      <span>INTERIORISMO</span><span class="filled">&middot;</span>
-      <span>BRANDING</span><span class="filled">&middot;</span>
-      <span>EVENT PRODUCER</span><span class="filled">&middot;</span>
       <span>MODA</span><span class="filled">&middot;</span>
-      <span>ARQUITECTURA</span><span class="filled">&middot;</span>
-      <span>ASISTENCIA EJECUTIVA</span><span class="filled">&middot;</span>
-      <span>INTERIORISMO</span><span class="filled">&middot;</span>
       <span>BRANDING</span><span class="filled">&middot;</span>
-      <span>EVENT PRODUCER</span><span class="filled">&middot;</span>
+      <span>PRODUCCI&Oacute;N DE EVENTOS</span><span class="filled">&middot;</span>
+      <span>INTERIORISMO</span><span class="filled">&middot;</span>
+      <span>PASARELAS</span><span class="filled">&middot;</span>
+      <span>IDENTIDAD DE MARCAS</span><span class="filled">&middot;</span>
       <span>MODA</span><span class="filled">&middot;</span>
-      <span>ARQUITECTURA</span><span class="filled">&middot;</span>
-      <span>ASISTENCIA EJECUTIVA</span><span class="filled">&middot;</span>
+      <span>BRANDING</span><span class="filled">&middot;</span>
+      <span>PRODUCCI&Oacute;N DE EVENTOS</span><span class="filled">&middot;</span>
+      <span>INTERIORISMO</span><span class="filled">&middot;</span>
+      <span>PASARELAS</span><span class="filled">&middot;</span>
+      <span>IDENTIDAD DE MARCAS</span><span class="filled">&middot;</span>
     </div>
   </div>
 
@@ -138,10 +146,10 @@
   </section>
 
   <!-- Image break 1 -->
-  <div class="image-break" style="background-image:url('https://images.unsplash.com/photo-1423666639041-f56000c27a9a?w=1920&q=80')">
+  <div class="image-break" style="background-image:url('https://images.unsplash.com/photo-1509631179647-0177331693ae?w=1920&q=80')">
     <div class="image-break-text">
-      <h3>Donde el detalle marca la diferencia</h3>
-      <p>Excelencia transversal en cada disciplina</p>
+      <h3>Moda, cultura y experiencia</h3>
+      <p>Donde cada detalle cuenta una historia</p>
     </div>
   </div>
 
@@ -152,39 +160,39 @@
       <h2 class="section-title reveal">Excelencia en cada disciplina</h2>
     </div>
     <div class="services-visual-grid reveal">
-      <a href="branding.html" class="service-visual-card" style="background-image:url('https://images.unsplash.com/photo-1600443295823-c988f88c59c3?w=600&q=80')">
+      <a href="moda.html" class="service-visual-card" style="background-image:url('https://images.unsplash.com/photo-1509631179647-0177331693ae?w=600&q=80')">
         <span class="card-arrow">&nearr;</span>
         <div class="card-content">
           <div class="card-number">01</div>
+          <h3>Moda</h3>
+          <p>Marcas propias, colaboraciones, talento e identidad de marcas de moda.</p>
+        </div>
+      </a>
+      <a href="branding.html" class="service-visual-card" style="background-image:url('https://images.unsplash.com/photo-1561070791-2526d30994b5?w=600&q=80')">
+        <span class="card-arrow">&nearr;</span>
+        <div class="card-content">
+          <div class="card-number">02</div>
           <h3>Branding &amp; Marketing</h3>
           <p>Identidad, narrativa y posicionamiento que transforman marcas en s&iacute;mbolos.</p>
         </div>
       </a>
-      <a href="event-producer.html" class="service-visual-card" style="background-image:url('https://images.unsplash.com/photo-1519167758481-83f550bb49b3?w=600&q=80')">
-        <span class="card-arrow">&nearr;</span>
-        <div class="card-content">
-          <div class="card-number">02</div>
-          <h3>Event Producer</h3>
-          <p>Galas, lanzamientos y activaciones que se viven antes de contarse.</p>
-        </div>
-      </a>
-      <a href="interiorismo.html" class="service-visual-card" style="background-image:url('https://images.unsplash.com/photo-1598928506311-c55ded91a20c?w=600&q=80')">
+      <a href="event-producer.html" class="service-visual-card" style="background-image:url('https://images.unsplash.com/photo-1511795409834-ef04bbd61622?w=600&q=80')">
         <span class="card-arrow">&nearr;</span>
         <div class="card-content">
           <div class="card-number">03</div>
+          <h3>Producci&oacute;n de Eventos</h3>
+          <p>Galas, pasarelas, lanzamientos y activaciones que se viven antes de contarse.</p>
+        </div>
+      </a>
+      <a href="interiorismo.html" class="service-visual-card" style="background-image:url('https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?w=600&q=80')">
+        <span class="card-arrow">&nearr;</span>
+        <div class="card-content">
+          <div class="card-number">04</div>
           <h3>Interiorismo</h3>
           <p>Espacios &iacute;ntimos y hoteleros que se habitan como si fueran propios.</p>
         </div>
       </a>
-      <a href="moda.html" class="service-visual-card" style="background-image:url('https://images.unsplash.com/photo-1541781774459-bb2af2f05b55?w=600&q=80')">
-        <span class="card-arrow">&nearr;</span>
-        <div class="card-content">
-          <div class="card-number">04</div>
-          <h3>Moda</h3>
-          <p>Marcas, desfiles y talento. La moda como forma de cultura contempor&aacute;nea.</p>
-        </div>
-      </a>
-      <a href="arquitectura.html" class="service-visual-card" style="background-image:url('https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?w=600&q=80')">
+      <a href="arquitectura.html" class="service-visual-card" style="background-image:url('https://images.unsplash.com/photo-1487958449943-2429e8be8625?w=600&q=80')">
         <span class="card-arrow">&nearr;</span>
         <div class="card-content">
           <div class="card-number">05</div>
@@ -192,7 +200,7 @@
           <p>Arquitectura conceptual, neuronal y ef&iacute;mera con vocaci&oacute;n de permanecer.</p>
         </div>
       </a>
-      <a href="asistencia-ejecutiva.html" class="service-visual-card" style="background-image:url('https://images.unsplash.com/photo-1497215842964-222b430dc094?w=600&q=80')">
+      <a href="asistencia-ejecutiva.html" class="service-visual-card" style="background-image:url('https://images.unsplash.com/photo-1600443295823-c988f88c59c3?w=600&q=80')">
         <span class="card-arrow">&nearr;</span>
         <div class="card-content">
           <div class="card-number">06</div>
