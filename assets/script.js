@@ -111,6 +111,26 @@
   });
 })();
 
+// ── Portfolio filters ──
+(function () {
+  const filters = document.querySelectorAll('.portfolio-filter');
+  const items = document.querySelectorAll('.masonry-item');
+  if (!filters.length || !items.length) return;
+
+  filters.forEach(btn => {
+    btn.addEventListener('click', () => {
+      filters.forEach(f => f.classList.remove('active'));
+      btn.classList.add('active');
+      const filter = btn.dataset.filter;
+      items.forEach(item => {
+        const cats = (item.dataset.category || '').split(/\s+/);
+        const show = filter === 'all' || cats.includes(filter);
+        item.style.display = show ? '' : 'none';
+      });
+    });
+  });
+})();
+
 // ── Active nav link ──
 (function () {
   const path = window.location.pathname.split('/').pop() || 'index.html';

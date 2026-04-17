@@ -71,97 +71,26 @@
     <a href="contacto.html">Contacto</a>
   </div>
 
-  <section class="page-hero short">
-    <div class="hero-bg" style="background-image:url('https://images.unsplash.com/photo-1539037116277-4db20889f2d4?w=1920&q=80')"></div>
-    <div class="page-hero-content">
-      <p class="kicker">Contacto</p>
+  <!-- Contacto simple: imagen izq + formulario der -->
+  <section class="contact-simple">
+    <div class="contact-simple-image" style="background-image:url('https://images.unsplash.com/photo-1517991104123-1d56a6e81ed9?w=1200&q=80')"></div>
+    <div class="contact-simple-form">
+      <p class="kicker-dark">Contacto</p>
       <h1>Hablemos</h1>
-      <p class="subtitle">Cada gran proyecto empieza con una conversaci&oacute;n sincera.</p>
-    </div>
-  </section>
-
-  <nav class="breadcrumb"><a href="index.html">Inicio</a> <span>/</span> Contacto</nav>
-
-  <!-- Split asimétrico: imagen + formulario -->
-  <div class="contact-split">
-    <div class="contact-side-image" style="background-image:url('https://images.unsplash.com/photo-1517991104123-1d56a6e81ed9?w=1200&q=80')"></div>
-    <div class="contact-side-form">
-      <h2>Cu&eacute;ntanos tu proyecto</h2>
-      <p>Respondemos en menos de 24 horas laborables con una propuesta personalizada.</p>
-      <form class="contact-form" onsubmit="event.preventDefault(); alert('Mensaje enviado. Gracias por tu inter\u00e9s.'); this.reset();">
-        <label>
-          <span>Nombre completo</span>
-          <input type="text" name="nombre" placeholder="Tu nombre" required />
-        </label>
-        <label>
-          <span>Correo electr&oacute;nico</span>
-          <input type="email" name="email" placeholder="tu@email.com" required />
-        </label>
-        <label>
-          <span>Tel&eacute;fono</span>
-          <input type="tel" name="telefono" placeholder="+34 000 000 000" />
-        </label>
-        <label>
-          <span>&iquest;Qu&eacute; servicio te interesa?</span>
-          <input type="text" name="asunto" placeholder="Interiorismo, Branding, Moda..." />
-        </label>
-        <label>
-          <span>Mensaje</span>
-          <textarea name="mensaje" rows="5" placeholder="Cu&eacute;ntanos brevemente sobre tu proyecto" required></textarea>
-        </label>
-        <button type="submit">Enviar mensaje</button>
+      <p class="lead">Cu&eacute;ntanos tu proyecto. Respondemos en menos de 24 horas laborables.</p>
+      <form class="contact-form-simple" onsubmit="event.preventDefault(); alert('Mensaje enviado. Gracias por tu inter\u00e9s.'); this.reset();">
+        <input type="text" name="nombre" placeholder="Nombre" required />
+        <input type="email" name="email" placeholder="Email" required />
+        <input type="tel" name="telefono" placeholder="Tel&eacute;fono" />
+        <input type="text" name="asunto" placeholder="Asunto" />
+        <textarea name="mensaje" rows="4" placeholder="Mensaje" required></textarea>
+        <button type="submit">Enviar</button>
       </form>
-    </div>
-  </div>
-
-  <!-- Quick info horizontal -->
-  <section>
-    <div class="contact-quick-info reveal">
-      <div class="item">
-        <div class="icon-line"></div>
-        <h5>Email</h5>
+      <div class="contact-simple-info">
         <a href="mailto:info@sanzahra.com">info@sanzahra.com</a>
-      </div>
-      <div class="item">
-        <div class="icon-line"></div>
-        <h5>Tel&eacute;fono</h5>
         <a href="tel:+34000000000">+34 000 000 000</a>
+        <span>Calle Serrano 45, Madrid</span>
       </div>
-      <div class="item">
-        <div class="icon-line"></div>
-        <h5>Oficina</h5>
-        <p>Calle Serrano 45<br>28006 Madrid</p>
-      </div>
-      <div class="item">
-        <div class="icon-line"></div>
-        <h5>Horario</h5>
-        <p>Lun &mdash; Vie<br>09:00 &mdash; 19:00</p>
-      </div>
-    </div>
-  </section>
-
-  <!-- Mapa decorativo -->
-  <div class="contact-map reveal" style="background-image:url('https://images.unsplash.com/photo-1565701124030-8f519aea40de?w=1920&q=80')"></div>
-
-  <!-- FAQ -->
-  <section class="bg-light">
-    <div class="container">
-      <p class="section-label reveal">Preguntas frecuentes</p>
-      <h2 class="section-title reveal">Resolvemos tus dudas</h2>
-    </div>
-    <div class="faq reveal">
-      <details>
-        <summary>&iquest;Cu&aacute;nto tiempo lleva un proyecto t&iacute;pico?</summary>
-        <p>Depende enormemente del alcance. Una identidad de marca puede desarrollarse en seis a ocho semanas; un interiorismo residencial completo oscila entre cuatro y nueve meses; un hotel boutique, entre doce y dieciocho. Tras la primera reuni&oacute;n te entregamos un calendario detallado con hitos claros.</p>
-      </details>
-      <details>
-        <summary>&iquest;Trabaj&aacute;is fuera de Espa&ntilde;a?</summary>
-        <p>S&iacute;. Aunque nuestra sede est&aacute; en Madrid, habitualmente desarrollamos proyectos en Francia, Italia, Portugal, Reino Unido y M&eacute;xico. Para encargos internacionales contamos con una red de colaboradores locales de confianza que garantizan la misma exigencia sobre el terreno.</p>
-      </details>
-      <details>
-        <summary>&iquest;Ofrec&eacute;is consulta inicial sin compromiso?</summary>
-        <p>Por supuesto. La primera conversaci&oacute;n es siempre gratuita. Analizamos tu caso, escuchamos tus objetivos y te proponemos el enfoque m&aacute;s adecuado antes de cualquier presupuesto. Solo avanzamos cuando hay un encaje real entre lo que necesitas y lo que podemos aportar.</p>
-      </details>
     </div>
   </section>
 
