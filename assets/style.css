@@ -364,6 +364,77 @@ nav.solid .hamburger span { background: var(--black); }
 }
 .partner-desc strong { color: var(--white); font-weight: 500; }
 
+/* ── LA FLORECILLA MODAL ── */
+.cs-btn {
+  display: inline-block;
+  background: var(--white); color: var(--black);
+  border: 1px solid var(--white);
+  padding: 1rem 2.5rem;
+  font-family: var(--sans); font-size: .72rem; font-weight: 500;
+  letter-spacing: .3em; text-transform: uppercase;
+  cursor: pointer; margin-top: 1.5rem;
+  transition: all .3s;
+}
+.cs-btn:hover { background: transparent; color: var(--white); }
+
+.fl-modal {
+  position: fixed; inset: 0; z-index: 9600;
+  display: none; align-items: center; justify-content: center;
+  background: rgba(0,0,0,.92); backdrop-filter: blur(8px);
+  opacity: 0; transition: opacity .4s ease;
+  padding: 2rem;
+}
+.fl-modal.open { display: flex; opacity: 1; }
+.fl-modal-inner {
+  position: relative; width: 100%; max-width: 1100px; height: 85vh; max-height: 800px;
+  overflow: hidden; box-shadow: 0 30px 80px rgba(0,0,0,.6);
+}
+.fl-modal-bg {
+  position: absolute; inset: 0;
+  background-size: cover; background-position: center;
+  animation: flZoom 8s ease-out infinite alternate;
+}
+@keyframes flZoom { from { transform: scale(1); } to { transform: scale(1.08); } }
+.fl-modal-bg::after {
+  content: ''; position: absolute; inset: 0;
+  background: linear-gradient(to bottom, rgba(0,0,0,.2) 0%, rgba(0,0,0,.55) 70%, rgba(0,0,0,.8) 100%);
+}
+.fl-modal-content {
+  position: absolute; inset: 0; z-index: 2;
+  display: flex; flex-direction: column; align-items: center; justify-content: center;
+  text-align: center; color: var(--white); padding: 2rem;
+}
+.fl-brand {
+  font-family: var(--serif); font-size: clamp(1.4rem, 3vw, 2.2rem);
+  font-weight: 300; letter-spacing: .15em;
+  margin-bottom: 2rem;
+  opacity: .9;
+}
+.fl-title {
+  font-family: var(--serif);
+  font-size: clamp(4rem, 12vw, 9rem);
+  font-weight: 300; letter-spacing: .2em;
+  line-height: .95;
+  margin-bottom: 2.5rem;
+}
+.fl-sub {
+  font-size: .95rem; letter-spacing: .1em; line-height: 1.8;
+  color: rgba(255,255,255,.8); max-width: 480px;
+}
+.fl-close {
+  position: absolute; top: 2rem; right: 2rem; z-index: 9602;
+  background: transparent; border: 1px solid rgba(255,255,255,.3);
+  color: var(--white); width: 48px; height: 48px;
+  font-size: 1.5rem; cursor: pointer; line-height: 1;
+  display: flex; align-items: center; justify-content: center;
+  transition: all .3s;
+}
+.fl-close:hover { background: rgba(255,255,255,.1); border-color: var(--white); }
+@media (max-width: 700px) {
+  .fl-modal-inner { height: 90vh; }
+  .fl-close { top: 1rem; right: 1rem; }
+}
+
 /* ── MODA: Coming Soon cards ── */
 .coming-soon-card {
   position: relative; padding: 4rem 2rem;

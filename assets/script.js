@@ -226,6 +226,20 @@
   });
 })();
 
+// ── La Florecilla Modal ──
+(function () {
+  const modal = document.getElementById('florecillaModal');
+  if (!modal) return;
+  const openers = document.querySelectorAll('[data-open-florecilla]');
+  const closers = modal.querySelectorAll('[data-close-florecilla]');
+  const open = (e) => { e?.preventDefault(); modal.classList.add('open'); document.body.style.overflow = 'hidden'; };
+  const close = () => { modal.classList.remove('open'); document.body.style.overflow = ''; };
+  openers.forEach(btn => btn.addEventListener('click', open));
+  closers.forEach(btn => btn.addEventListener('click', close));
+  modal.addEventListener('click', (e) => { if (e.target === modal) close(); });
+  document.addEventListener('keydown', (e) => { if (e.key === 'Escape' && modal.classList.contains('open')) close(); });
+})();
+
 // ── Active nav link ──
 (function () {
   const path = window.location.pathname.split('/').pop() || 'index.html';
