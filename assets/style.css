@@ -899,7 +899,7 @@ footer {
   justify-content: center;
   gap: 0.5rem;
   flex-wrap: wrap;
-  margin: 0 auto 3rem;
+  margin: 4rem auto 1rem;
   max-width: 1200px;
 }
 .portfolio-filter {
@@ -962,7 +962,41 @@ footer {
   color: #b8a07a;
 }
 
-/* contacto: simple split imagen + formulario */
+/* contacto: imagen + formulario en dos bloques */
+.contact-duo {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 4rem;
+  max-width: 1200px;
+  margin: 0 auto;
+  align-items: stretch;
+}
+.contact-duo-image {
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  min-height: 520px;
+  aspect-ratio: auto;
+}
+.contact-duo-form {
+  display: flex;
+  flex-direction: column;
+}
+.contact-duo-lead {
+  font-size: .95rem; line-height: 1.7; color: #555;
+  margin-bottom: 2rem; max-width: 460px;
+}
+.contact-duo .contact-simple-info {
+  margin-top: 2rem;
+  padding-top: 2rem;
+  border-top: 1px solid rgba(0,0,0,.08);
+}
+@media (max-width: 900px) {
+  .contact-duo { grid-template-columns: 1fr; gap: 2rem; }
+  .contact-duo-image { min-height: 300px; }
+}
+
+/* contacto: simple split imagen + formulario (legacy) */
 .contact-simple {
   display: grid;
   grid-template-columns: 1fr 1fr;
