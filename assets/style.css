@@ -349,6 +349,21 @@ nav.solid .hamburger span { background: var(--black); }
   font-size: 4rem; opacity: .6;
 }
 
+/* ── PARTNER SECTION ── */
+.partner-section {
+  background: var(--black);
+  padding: 6rem 3rem;
+}
+.partner-card {
+  max-width: 900px; margin: 0 auto; text-align: center;
+  padding: 4rem 2rem; border: 1px solid rgba(255,255,255,.1);
+}
+.partner-desc {
+  color: rgba(255,255,255,.7); line-height: 1.85; font-size: .95rem;
+  max-width: 620px; margin: 0 auto 2.5rem;
+}
+.partner-desc strong { color: var(--white); font-weight: 500; }
+
 /* ── MODA: Coming Soon cards ── */
 .coming-soon-card {
   position: relative; padding: 4rem 2rem;
