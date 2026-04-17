@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Contacto SANZAHRA — Solicita informaci&oacute;n, presupuesto o consulta inicial gratuita. Madrid, Espa&ntilde;a." />
+  <title>Contacto — SANZAHRA</title>
+  <link rel="icon" type="image/svg+xml" href="assets/favicon.svg" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="assets/style.css" />
+</head>
+<body>
+
+  <div id="maintenance">
+    <div class="maint-inner">
+      <div class="maint-line"></div>
+      <h1 class="maint-title">SANZAHRA</h1>
+      <p class="maint-sub">Sitio en construcci&oacute;n</p>
+      <p class="maint-desc">Estamos trabajando en algo extraordinario.<br>Vuelve pronto.</p>
+      <div class="maint-form">
+        <input type="password" id="maintPass" placeholder="Introduce la clave de acceso" autocomplete="off" />
+        <button id="maintBtn">Acceder</button>
+      </div>
+      <p class="maint-error" id="maintError">Clave incorrecta</p>
+    </div>
+  </div>
+
+  <div id="loader"><span>SANZAHRA</span></div>
+
+  <nav id="mainNav" data-transparent="true">
+    <ul class="nav-links nav-links-left">
+      <li><a href="index.html">Inicio</a></li>
+      <li><a href="sobre-nosotros.html">Sobre Nosotros</a></li>
+      <li><a href="servicios.html">Servicios</a></li>
+      <li><a href="portfolio.html">Portfolio</a></li>
+    </ul>
+    <a href="index.html" class="logo">SANZAHRA</a>
+    <ul class="nav-links nav-links-right">
+      <li><a href="interiorismo.html">Interiorismo</a></li>
+      <li><a href="moda.html">Moda</a></li>
+      <li><a href="arquitectura.html">Arquitectura</a></li>
+      <li><a href="contacto.html">Contacto</a></li>
+    </ul>
+    <div class="hamburger" id="hamburger"><span></span><span></span><span></span></div>
+  </nav>
+
+  <div class="mobile-menu" id="mobileMenu">
+    <a href="index.html">Inicio</a>
+    <a href="sobre-nosotros.html">Sobre Nosotros</a>
+    <a href="servicios.html">Servicios</a>
+    <a href="portfolio.html">Portfolio</a>
+    <a href="branding.html">Branding</a>
+    <a href="interiorismo.html">Interiorismo</a>
+    <a href="moda.html">Moda</a>
+    <a href="arquitectura.html">Arquitectura</a>
+    <a href="event-producer.html">Event Producer</a>
+    <a href="asistencia-ejecutiva.html">Asistencia Ejecutiva</a>
+    <a href="contacto.html">Contacto</a>
+  </div>
+
+  <section class="page-hero">
+    <div class="hero-bg" style="background-image:url('https://images.unsplash.com/photo-1497366216548-37526070297c?w=1920&q=80')"></div>
+    <div class="page-hero-content">
+      <p class="kicker">Contacto</p>
+      <h1>Hablemos</h1>
+      <p class="subtitle">Cada proyecto empieza con una conversaci&oacute;n.</p>
+    </div>
+  </section>
+
+  <nav class="breadcrumb"><a href="index.html">Inicio</a> <span>/</span> Contacto</nav>
+
+  <section class="bg-dark">
+    <div class="contact-grid">
+      <div class="contact-info">
+        <p class="section-label">Inform&aacute;cion</p>
+        <h2 class="section-title">Estamos<br>a tu disposici&oacute;n</h2>
+        <p>Nos encantar&iacute;a conocer tu proyecto. Escr&iacute;benos, ll&aacute;manos o visita nuestras oficinas en Madrid. Respondemos en un plazo m&aacute;ximo de 24 horas laborables.</p>
+        <ul>
+          <li><strong>Email</strong><a href="mailto:info@sanzahra.com">info@sanzahra.com</a></li>
+          <li><strong>Tel&eacute;fono</strong><a href="tel:+34000000000">+34 000 000 000</a></li>
+          <li><strong>Direcci&oacute;n</strong><span>Calle Serrano, 28006 Madrid, Espa&ntilde;a</span></li>
+          <li><strong>Horario</strong><span>Lun-Vie 09:00 - 19:00</span></li>
+        </ul>
+      </div>
+      <form class="contact-form" onsubmit="event.preventDefault()">
+        <label>
+          <span>Nombre</span>
+          <input type="text" name="nombre" placeholder="Tu nombre" required />
+        </label>
+        <label>
+          <span>Email</span>
+          <input type="email" name="email" placeholder="tu@email.com" required />
+        </label>
+        <label>
+          <span>Tel&eacute;fono</span>
+          <input type="tel" name="telefono" placeholder="+34 000 000 000" />
+        </label>
+        <label>
+          <span>Asunto</span>
+          <input type="text" name="asunto" placeholder="Asunto de tu consulta" />
+        </label>
+        <label>
+          <span>Mensaje</span>
+          <textarea name="mensaje" rows="5" placeholder="Cu&eacute;ntanos sobre tu proyecto" required></textarea>
+        </label>
+        <button type="submit" class="btn btn-light">Enviar mensaje</button>
+      </form>
+    </div>
+  </section>
+
+  <section class="bg-light">
+    <div class="container">
+      <p class="section-label reveal">Nuestro compromiso</p>
+      <h2 class="section-title reveal">C&oacute;mo trabajamos<br>contigo</h2>
+    </div>
+    <div class="features reveal">
+      <div class="feature">
+        <h4>Respuesta en 24h</h4>
+        <p>Valoramos tu tiempo. Todas las consultas recibidas en d&iacute;a laborable reciben una primera respuesta en menos de veinticuatro horas.</p>
+      </div>
+      <div class="feature">
+        <h4>Consulta inicial gratuita</h4>
+        <p>Estudiamos tu caso sin compromiso. Analizamos tus necesidades y te proponemos el enfoque m&aacute;s adecuado antes de cualquier presupuesto.</p>
+      </div>
+      <div class="feature">
+        <h4>Proyectos internacionales</h4>
+        <p>Operamos en Espa&ntilde;a y en el extranjero. Nuestro equipo viaja all&iacute; donde el proyecto lo requiera, garantizando la misma excelencia en cualquier geograf&iacute;a.</p>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="footer-top">
+      <div class="footer-brand">
+        <span class="footer-logo">SANZAHRA</span>
+        <p>Empresa matriz creativa multidisciplinar. Interiorismo, branding, moda, arquitectura y asistencia ejecutiva bajo una misma visi&oacute;n.</p>
+      </div>
+      <div class="footer-col"><h5>Navegaci&oacute;n</h5><ul><li><a href="index.html">Inicio</a></li><li><a href="sobre-nosotros.html">Sobre Nosotros</a></li><li><a href="servicios.html">Servicios</a></li><li><a href="portfolio.html">Portfolio</a></li><li><a href="contacto.html">Contacto</a></li></ul></div>
+      <div class="footer-col"><h5>Servicios</h5><ul><li><a href="branding.html">Branding</a></li><li><a href="interiorismo.html">Interiorismo</a></li><li><a href="moda.html">Moda</a></li><li><a href="arquitectura.html">Arquitectura</a></li><li><a href="event-producer.html">Event Producer</a></li><li><a href="asistencia-ejecutiva.html">Asistencia Ejecutiva</a></li></ul></div>
+      <div class="footer-col"><h5>Contacto</h5><ul><li><a href="mailto:info@sanzahra.com">info@sanzahra.com</a></li><li><a href="tel:+34000000000">+34 000 000 000</a></li></ul></div>
+    </div>
+    <div class="footer-bottom">
+      <p>&copy; 2026 SANZAHRA. Todos los derechos reservados.</p>
+      <ul class="footer-links"><li><a href="politica-privacidad.html">Pol&iacute;tica de Privacidad</a></li><li><a href="terminos-condiciones.html">T&eacute;rminos y Condiciones</a></li></ul>
+    </div>
+  </footer>
+
+  <div id="cookieBanner" role="dialog" aria-label="Aviso de cookies">
+    <h4 class="cookie-title">Utilizamos cookies</h4>
+    <p class="cookie-text">Usamos cookies para mejorar tu experiencia, analizar el tr&aacute;fico y personalizar contenido. Puedes aceptar todas o rechazarlas. M&aacute;s informaci&oacute;n en nuestra <a href="politica-privacidad.html">pol&iacute;tica de privacidad</a>.</p>
+    <div class="cookie-actions">
+      <button class="accept" data-cookie-action="accepted">Aceptar</button>
+      <button class="reject" data-cookie-action="rejected">Rechazar</button>
+    </div>
+  </div>
+
+  <script src="assets/script.js"></script>
+</body>
+</html>
