@@ -110,20 +110,21 @@ nav.solid {
 nav .logo {
   grid-column: 2;
   font-family: var(--serif);
-  font-size: 3rem;
+  font-size: 2.4rem;
   font-weight: 500;
-  letter-spacing: .3em;
+  letter-spacing: .25em;
   color: var(--white);
   text-decoration: none;
   transition: color .4s, font-size .4s;
   text-align: center;
   line-height: 1;
+  white-space: nowrap;
 }
 /* En el inicio el logo se mantiene más discreto */
-body.is-home nav .logo { font-size: 2.2rem; letter-spacing: .28em; }
+body.is-home nav .logo { font-size: 2rem; letter-spacing: .22em; }
 nav.scrolled .logo,
-nav.solid .logo { font-size: 2rem; letter-spacing: .25em; }
-body.is-home nav.scrolled .logo { font-size: 1.8rem; }
+nav.solid .logo { font-size: 1.7rem; letter-spacing: .2em; }
+body.is-home nav.scrolled .logo { font-size: 1.6rem; }
 @media (max-width: 900px) {
   nav .logo { font-size: 1.8rem; }
   body.is-home nav .logo { font-size: 1.5rem; }
@@ -885,25 +886,27 @@ footer {
 .cookie-actions .reject:hover { background: var(--white); color: var(--black); }
 
 /* ── RESPONSIVE ── */
-@media (max-width: 1280px) {
-  /* Nav ajustado para que todos los enlaces sean visibles */
+@media (max-width: 1440px) {
+  /* Nav ajustado para que todos los enlaces sean visibles en laptops comunes */
   nav#mainNav { padding: 1.3rem 1.5rem; }
-  nav .logo { font-size: 2rem; letter-spacing: .22em; }
-  body.is-home nav .logo { font-size: 1.6rem; letter-spacing: .2em; }
+  nav .logo { font-size: 1.8rem; letter-spacing: .2em; }
+  body.is-home nav .logo { font-size: 1.5rem; letter-spacing: .18em; }
   .nav-links { gap: 1rem; }
   .nav-links a { font-size: .62rem; letter-spacing: .12em; }
 }
 
-@media (max-width: 1024px) {
+@media (max-width: 1200px) {
   .services-visual-grid { grid-template-columns: repeat(2, 1fr); }
   .portfolio-grid { grid-template-columns: repeat(3, 1fr); }
   .process-grid, .features { grid-template-columns: repeat(2, 1fr); }
   .gallery { grid-template-columns: repeat(2, 1fr); }
   .footer-top { grid-template-columns: 1fr 1fr; }
-  /* Nav más compacto en tablets */
-  nav .logo { font-size: 1.6rem; }
-  .nav-links { gap: .8rem; }
-  .nav-links a { font-size: .58rem; }
+  /* Nav más compacto */
+  nav#mainNav { padding: 1rem 1rem; }
+  nav .logo { font-size: 1.5rem; letter-spacing: .15em; }
+  body.is-home nav .logo { font-size: 1.3rem; }
+  .nav-links { gap: .75rem; }
+  .nav-links a { font-size: .55rem; letter-spacing: .1em; }
 }
 
 @media (max-width: 900px) {
