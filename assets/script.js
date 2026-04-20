@@ -156,7 +156,7 @@
 
   dots.forEach((dot, i) => dot.addEventListener('click', () => activate(i)));
 
-  setInterval(() => activate((current + 1) % slides.length), 2200);
+  setInterval(() => activate((current + 1) % slides.length), 1600);
 })();
 
 // ── Lightbox para Portfolio ──
