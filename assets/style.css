@@ -384,12 +384,12 @@ nav.solid .hamburger span { background: var(--black); }
   display: none; align-items: center; justify-content: center;
   background: rgba(0,0,0,.92); backdrop-filter: blur(8px);
   opacity: 0; transition: opacity .4s ease;
-  padding: 2rem;
+  padding: 0;
 }
 .fl-modal.open { display: flex; opacity: 1; }
 .fl-modal-inner {
-  position: relative; width: 100%; max-width: 1100px; height: 85vh; max-height: 800px;
-  overflow: hidden; box-shadow: 0 30px 80px rgba(0,0,0,.6);
+  position: relative; width: 100vw; height: 100vh;
+  overflow: hidden;
 }
 .fl-modal-bg {
   position: absolute; inset: 0;
@@ -433,7 +433,6 @@ nav.solid .hamburger span { background: var(--black); }
 }
 .fl-close:hover { background: rgba(255,255,255,.1); border-color: var(--white); }
 @media (max-width: 700px) {
-  .fl-modal-inner { height: 90vh; }
   .fl-close { top: 1rem; right: 1rem; }
 }
 
