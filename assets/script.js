@@ -165,9 +165,9 @@
 
   dots.forEach((dot, i) => dot.addEventListener('click', () => activate(i)));
 
-  let timer = setInterval(() => activate((current + 1) % slides.length), 2500);
+  let timer = setInterval(() => activate((current + 1) % slides.length), 1200);
   slider.addEventListener('mouseenter', () => clearInterval(timer));
-  slider.addEventListener('mouseleave', () => { timer = setInterval(() => activate((current + 1) % slides.length), 2500); });
+  slider.addEventListener('mouseleave', () => { timer = setInterval(() => activate((current + 1) % slides.length), 1200); });
 })();
 
 // ── Lightbox para Portfolio ──
