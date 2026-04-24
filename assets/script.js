@@ -2,37 +2,6 @@
    SANZAHRA — Script principal
 ═══════════════════════════════════════════════════════ */
 
-// ── Maintenance Mode ──
-(function () {
-  const MAINT_PASS = 'Snzhr@2026!';
-  const maintenance = document.getElementById('maintenance');
-  if (!maintenance) return;
-
-  const maintPass = document.getElementById('maintPass');
-  const maintBtn = document.getElementById('maintBtn');
-  const maintError = document.getElementById('maintError');
-  const maintForm = document.querySelector('.maint-form');
-
-  if (localStorage.getItem('sanzahra_access') === 'granted') {
-    maintenance.classList.add('unlocked');
-  }
-
-  function tryAccess() {
-    if (maintPass.value === MAINT_PASS) {
-      localStorage.setItem('sanzahra_access', 'granted');
-      maintenance.classList.add('unlocked');
-      maintError.classList.remove('show');
-    } else {
-      maintError.classList.add('show');
-      maintForm.classList.add('shake');
-      setTimeout(() => maintForm.classList.remove('shake'), 400);
-    }
-  }
-
-  if (maintBtn) maintBtn.addEventListener('click', tryAccess);
-  if (maintPass) maintPass.addEventListener('keydown', (e) => { if (e.key === 'Enter') tryAccess(); });
-})();
-
 // ── Loader ──
 (function () {
   const loader = document.getElementById('loader');

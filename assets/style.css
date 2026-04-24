@@ -27,52 +27,6 @@ body {
 img { max-width: 100%; display: block; }
 a { color: inherit; }
 
-/* ── MAINTENANCE ── */
-#maintenance {
-  position: fixed; inset: 0; z-index: 99999;
-  background: var(--black);
-  display: flex; align-items: center; justify-content: center;
-  transition: opacity .6s ease, visibility .6s ease;
-}
-#maintenance.unlocked { opacity: 0; visibility: hidden; pointer-events: none; }
-.maint-inner {
-  text-align: center; width: 100%; max-width: 550px; padding: 2rem;
-  display: flex; flex-direction: column; align-items: center; justify-content: center;
-}
-.maint-line { width: 50px; height: 1px; background: rgba(255,255,255,.25); margin: 0 auto 2.5rem; }
-.maint-title {
-  font-family: var(--serif); font-size: clamp(2.5rem, 6vw, 4rem); font-weight: 300;
-  color: var(--white); letter-spacing: .3em; margin-bottom: 1rem; width: 100%;
-}
-.maint-sub {
-  font-size: .7rem; font-weight: 500; letter-spacing: .3em; text-transform: uppercase;
-  color: rgba(255,255,255,.4); margin-bottom: 2rem;
-}
-.maint-desc {
-  font-size: .85rem; line-height: 1.8; color: rgba(255,255,255,.5); margin-bottom: 3rem;
-}
-.maint-form { display: flex; gap: 0; margin-bottom: 1rem; width: 100%; max-width: 380px; }
-.maint-form input {
-  flex: 1; background: transparent; border: 1px solid rgba(255,255,255,.2);
-  border-right: none; padding: .9rem 1.2rem; color: var(--white);
-  font-family: var(--sans); font-size: .8rem; outline: none;
-  letter-spacing: .1em; transition: border-color .3s;
-}
-.maint-form input:focus { border-color: rgba(255,255,255,.5); }
-.maint-form input::placeholder { color: rgba(255,255,255,.2); letter-spacing: .1em; }
-.maint-form button {
-  background: var(--white); border: 1px solid var(--white); color: var(--black);
-  padding: .9rem 2rem; font-family: var(--sans); font-size: .65rem; font-weight: 600;
-  letter-spacing: .2em; text-transform: uppercase; cursor: pointer; transition: all .3s;
-}
-.maint-form button:hover { background: transparent; color: var(--white); }
-.maint-error {
-  font-size: .7rem; color: #e74c3c; letter-spacing: .1em;
-  opacity: 0; transition: opacity .3s;
-}
-.maint-error.show { opacity: 1; }
-.maint-form.shake { animation: shake .4s ease; }
-@keyframes shake { 0%,100%{transform:translateX(0)} 20%{transform:translateX(-8px)} 40%{transform:translateX(8px)} 60%{transform:translateX(-5px)} 80%{transform:translateX(5px)} }
 
 /* ── LOADER ── */
 #loader {
